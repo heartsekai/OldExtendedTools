@@ -1,6 +1,7 @@
 #
 # Set_ImageFilter.ps1
 #
+# foreach ($image in (Get-ChildItem "G:\IFS\PERSONEN\luj\H3D")) { Set-ImageFilter -Image $image.FullName -Output "G:\IFS\PERSONEN\luj\Background\$($image.Name)"}
 # https://msdn.microsoft.com/en-us/library/bb882583(v=vs.110).aspx
 function Set-ImageFilter {
 	param (
@@ -38,4 +39,3 @@ function Set-ImageFilter {
 	$imageLoad.Save($Output,$jpgEncoder,$myEncoderParameters)
 }
 
-# foreach ($image in (Get-ChildItem "G:\IFS\PERSONEN\luj\H3D")) { Set-ImageFilter -Image $image.FullName -Output "G:\IFS\PERSONEN\luj\Background\$($image.Name)"}

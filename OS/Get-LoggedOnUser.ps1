@@ -3,7 +3,7 @@
 #
 # https://gallery.technet.microsoft.com/scriptcenter/d46b1f3b-36a4-4a56-951b-e37815a2df0c
 function Get-LoggedOnUser {
-#Requires -Version 2.0 and Running as local admin.           
+#Require -Version 2.0 and Running as local admin.           
 [CmdletBinding()]            
  Param             
    (                       

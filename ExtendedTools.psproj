@@ -1,0 +1,17 @@
+﻿<Project>
+  <Version>1</Version>
+  <FileID>cec0815a-bb76-4719-960a-eeac1da6d76b</FileID>
+  <ProjectType>1</ProjectType>
+  <Files>
+    <File ReferenceName="" Build="2">ExtendedTools.psd1</File>
+    <File ReferenceName="" Build="0">ExtendedTools.psm1</File>
+    <File ReferenceName="Call-Get-InstalledSoftware_ps1" Build="0" CommandExtension="True">OS\Get-InstalledSoftware.ps1</File>
+    <File ReferenceName="Call-Get-LoggedOnUser_ps1" Build="0" CommandExtension="True">OS\Get-LoggedOnUser.ps1</File>
+    <File ReferenceName="Call-Remove-Profile_ps1" Build="0" CommandExtension="True">OS\Remove-Profile.ps1</File>
+    <File ReferenceName="Call-Set-BackgroundDesktop_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundDesktop.ps1</File>
+    <File ReferenceName="Call-Set-BackgroundLogon_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundLogon.ps1</File>
+    <File ReferenceName="Call-Set-ImageFilter_ps1" Build="0" CommandExtension="True">Shared\Set-ImageFilter.ps1</File>
+  </Files>
+  <StartupScript>
+  </StartupScript>
+</Project>

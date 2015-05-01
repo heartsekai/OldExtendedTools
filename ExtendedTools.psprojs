@@ -1,0 +1,14 @@
+﻿<ProjectState>
+  <Version>1.0</Version>
+  <FileID>cec0815a-bb76-4719-960a-eeac1da6d76b</FileID>
+  <OpenFiles>
+    <File>ExtendedTools.psm1</File>
+    <File>OS\Get-InstalledSoftware.ps1</File>
+    <File>OS\Get-LoggedOnUser.ps1</File>
+    <File>OS\Remove-Profile.ps1</File>
+    <File>OS\Set-BackgroundDesktop.ps1</File>
+    <File>OS\Set-BackgroundLogon.ps1</File>
+    <File>Shared\Set-ImageFilter.ps1</File>
+    <File>ExtendedTools.psd1</File>
+  </OpenFiles>
+</ProjectState>

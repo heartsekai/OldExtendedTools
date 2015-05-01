@@ -1,6 +1,7 @@
 #
 # Set_BackgroundDesktop.ps1
 #
+# Set-BackgroundDesktop -SourceImage C:\temp\legolotr.jpg -UserName h3d -ComputerName C020794
 function Set-BackgroundDesktop {
 	[CmdletBinding()]
 	param (
@@ -91,4 +92,3 @@ function Set-BackgroundDesktop {
 	}
 }
 
-# Set-BackgroundDesktop -SourceImage C:\temp\legolotr.jpg -UserName h3d -ComputerName C020794
