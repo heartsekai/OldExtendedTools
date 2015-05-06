@@ -7,8 +7,7 @@
     <File>OS\Get-LoggedOnUser.ps1</File>
     <File>OS\Remove-Profile.ps1</File>
     <File>OS\Set-BackgroundDesktop.ps1</File>
-    <File>OS\Set-BackgroundLogon.ps1</File>
-    <File>Shared\Set-ImageFilter.ps1</File>
     <File>ExtendedTools.psd1</File>
+    <File>OS\Set-LocalAdmin.ps1</File>
   </OpenFiles>
 </ProjectState>
