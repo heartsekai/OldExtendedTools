@@ -12,6 +12,9 @@
 	.PARAMETER UserName
 		Username from the User, without domain
 	
+	.NOTES
+		Created by:   	luj
+
 	.EXAMPLE
 		Remove-Profile C060004 t88
 #>

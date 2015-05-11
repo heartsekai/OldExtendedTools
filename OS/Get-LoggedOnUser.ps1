@@ -1,11 +1,28 @@
 #
 # Get_LoggedOnUser.ps1
 #
-# https://gallery.technet.microsoft.com/scriptcenter/d46b1f3b-36a4-4a56-951b-e37815a2df0c
+
+<#
+	.SYNOPSIS
+		Get the Logged User on a defined Computer
+
+	.PARAMETER ComputerName
+		Mandatory Parameter. ComputerName of the Computer to connect
+
+	.EXAMPLE
+		PS C:\> Get-LoggedOnUser C12345678
+
+	.NOTES
+		Created by:   	luj
+
+	.LINK
+		https://gallery.technet.microsoft.com/scriptcenter/d46b1f3b-36a4-4a56-951b-e37815a2df0c
+#>
+
 function Get-LoggedOnUser {
 	#Require -Version 2.0 and Running as local admin.           
 	[CmdletBinding()]
-	Param(
+	Param (
 		[Parameter(Mandatory = $true,
 				   Position = 0,
 				   ValueFromPipeline = $true,

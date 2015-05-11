@@ -15,27 +15,19 @@
 	.PARAMETER GroupName
 		A description of the GroupName parameter.
 	
-	.EXAMPLE 1
+	.EXAMPLE
 		PS C:\> Add-GroupMember -UserName 'luj' -ComputerName C12345678
-		"luj added in Administrators at C12345678."
+		"luj added in Remote Desktop Users at C12345678."
 		This example shows how to call the Add-GroupMember function with named parameters.
 	
-	.EXAMPLE 2
-		PS C:\> Add-GroupMember -UserName joan -Verbose -GroupName "Remote Desktop Users"
-		'joan added in Remote Desktop Users at $env:COMPUTERNAME'
+	.EXAMPLE
+		PS C:\> Add-GroupMember -UserName joan -Verbose -GroupName "Administrators"
+		'joan added in Administrators at $env:COMPUTERNAME'
 		This example shows how to call the Add-GroupMember function with positional parameters.
 	
-	.OUTPUTS
-		System.String
-	
 	.NOTES
-		===========================================================================
-		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2015 v4.2.83
 		Created on:   	01.05.2015 20:27
 		Created by:   	luj
-		Organization:
-		Filename:
-		===========================================================================
 
 	.INPUTS
 		System.String,System.String
@@ -52,7 +44,7 @@ function Add-GroupMember {
 		[String]$ComputerName = $env:COMPUTERNAME,
 		
 		[Parameter(Position = 2)]
-		[string]$GroupName = "Administrators"
+		[string]$GroupName = "Remote Desktop Users"
 	)
 	
 	begin {
@@ -71,7 +63,7 @@ function Add-GroupMember {
 			# if computer is offline we don't need to continue
 			Write-Verbose "Trying to Ping $ComputerName"
 			
-			Test-Connection -ComputerName $ComputerName -Count 1 -Quiet -ErrorAction 'Stop'
+			Test-Connection -ComputerName $ComputerName -Count 1 -Quiet -ErrorAction 'Stop' | Out-Null
 			
 			$GroupContext = New-Object System.DirectoryServices.AccountManagement.PrincipalContext([System.DirectoryServices.AccountManagement.ContextType]::Machine, $ComputerName)
 			
