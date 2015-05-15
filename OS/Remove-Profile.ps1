@@ -1,6 +1,6 @@
 ﻿<#
 	.SYNOPSIS
-		Delete Profiles
+		Remove Profiles
 	
 	.DESCRIPTION
 		It will make a massage to your feed and bring you a coffee. Meanwile will delete
@@ -11,12 +11,14 @@
 	
 	.PARAMETER UserName
 		Username from the User, without domain
+
+	.EXAMPLE
+		Remove-Profile C060004 t88
 	
 	.NOTES
 		Created by:   	luj
 
-	.EXAMPLE
-		Remove-Profile C060004 t88
+
 #>
 function Remove-Profile {
 	[CmdletBinding()]

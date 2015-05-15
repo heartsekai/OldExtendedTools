@@ -11,12 +11,12 @@
 #>
 
 
-Export-ModuleMember Get-InstalledSoftware,
-					Get-LoggedOnUser,
-					Remove-Profile,
-					Set-BackgroundDesktop,
-					Set-BackgroundLogon,
-					Set-ImageFilter
+#Export-ModuleMember Get-InstalledSoftware,
+#					Get-LoggedOnUser,
+#					Remove-Profile,
+#					Set-BackgroundDesktop,
+#					Set-BackgroundLogon,
+#					Set-ImageFilter
 
 
 

@@ -11,8 +11,10 @@
     <File ReferenceName="Call-Set-BackgroundDesktop_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundDesktop.ps1</File>
     <File ReferenceName="Call-Set-BackgroundLogon_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundLogon.ps1</File>
     <File ReferenceName="Call-Set-ImageFilter_ps1" Build="0" CommandExtension="True">Shared\Set-ImageFilter.ps1</File>
-    <File ReferenceName="Call-Set-LocalAdmin_ps1" Build="0" CommandExtension="False">OS\Set-LocalAdmin.ps1</File>
+    <File ReferenceName="Call-Add-GroupMember_ps1" Build="0" CommandExtension="True">OS\Add-GroupMember.ps1</File>
+    <File ReferenceName="Call-New-LocalUser_ps1" Build="0" CommandExtension="True">OS\New-LocalUser.ps1</File>
+    <File ReferenceName="Call-Get-GroupMember_ps1" Build="0" CommandExtension="True">OS\Get-GroupMember.ps1</File>
+    <File ReferenceName="Call-Remove-GroupMember_ps1" Build="0" CommandExtension="True">OS\Remove-GroupMember.ps1</File>
   </Files>
-  <StartupScript>
-  </StartupScript>
+  <StartupScript>D:\Mobiledata\luj\My Documents\Skripts\ExtendedTools\OS\Get-GroupMember.ps1</StartupScript>
 </Project>
