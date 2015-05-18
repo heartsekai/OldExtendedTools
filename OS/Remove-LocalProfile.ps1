@@ -13,14 +13,14 @@
 		Username from the User, without domain
 
 	.EXAMPLE
-		Remove-Profile C060004 t88
+		Remove-LocalProfile C060004 t88
 	
 	.NOTES
 		Created by:   	luj
 
 
 #>
-function Remove-Profile {
+function Remove-LocalProfile {
 	[CmdletBinding()]
 	param (
 		[Parameter(Position=0,Mandatory=$true)]

@@ -7,14 +7,13 @@
     <File ReferenceName="" Build="0">ExtendedTools.psm1</File>
     <File ReferenceName="Call-Get-InstalledSoftware_ps1" Build="0" CommandExtension="True">OS\Get-InstalledSoftware.ps1</File>
     <File ReferenceName="Call-Get-LoggedOnUser_ps1" Build="0" CommandExtension="True">OS\Get-LoggedOnUser.ps1</File>
-    <File ReferenceName="Call-Remove-Profile_ps1" Build="0" CommandExtension="True">OS\Remove-Profile.ps1</File>
     <File ReferenceName="Call-Set-BackgroundDesktop_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundDesktop.ps1</File>
     <File ReferenceName="Call-Set-BackgroundLogon_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundLogon.ps1</File>
     <File ReferenceName="Call-Set-ImageFilter_ps1" Build="0" CommandExtension="True">Shared\Set-ImageFilter.ps1</File>
-    <File ReferenceName="Call-Add-GroupMember_ps1" Build="0" CommandExtension="True">OS\Add-GroupMember.ps1</File>
     <File ReferenceName="Call-New-LocalUser_ps1" Build="0" CommandExtension="True">OS\New-LocalUser.ps1</File>
-    <File ReferenceName="Call-Get-GroupMember_ps1" Build="0" CommandExtension="True">OS\Get-GroupMember.ps1</File>
-    <File ReferenceName="Call-Remove-GroupMember_ps1" Build="0" CommandExtension="True">OS\Remove-GroupMember.ps1</File>
+    <File ReferenceName="Call-Add-LocalGroupMember_ps1" Build="0" CommandExtension="False">OS\Add-LocalGroupMember.ps1</File>
+    <File ReferenceName="Call-Get-LocalGroupMember_ps1" Build="0" CommandExtension="False">OS\Get-LocalGroupMember.ps1</File>
+    <File ReferenceName="Call-Remove-LocalGroupMember_ps1" Build="0" CommandExtension="False">OS\Remove-LocalGroupMember.ps1</File>
+    <File ReferenceName="Call-Remove-LocalProfile_ps1" Build="0" CommandExtension="False">OS\Remove-LocalProfile.ps1</File>
   </Files>
-  <StartupScript>D:\Mobiledata\luj\My Documents\Skripts\ExtendedTools\OS\Get-GroupMember.ps1</StartupScript>
 </Project>

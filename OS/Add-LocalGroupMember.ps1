@@ -1,37 +1,38 @@
-﻿<#
+﻿
+<#
 	.SYNOPSIS
-		Remove a member from a Computer group.
+		Adds one or more members to an Computer group.
 	
 	.DESCRIPTION
-		A detailed description of the Add-GroupMember function.
+		A detailed description of the Add-LocalGroupMember function.
 	
 	.PARAMETER UserName
 		UserName in the domain.
 	
 	.PARAMETER ComputerName
-		Computer Name where it will be applied. If no ComputerName is given, local Computer will take instead.
+		The description of a the ComputerName parameter.
 	
 	.PARAMETER GroupName
-		Group name of the group where the user need to be removed.
+		A description of the GroupName parameter.
 	
 	.EXAMPLE
-		PS C:\> Remove-GroupMember -UserName 'luj' -ComputerName C12345678
-		"luj deleted in Remote Desktop Users at C12345678."
-		This example shows how to call the Remove-GroupMember function with named parameters.
+		PS C:\> Add-LocalGroupMember -UserName 'luj' -ComputerName C12345678
+		"luj added in Remote Desktop Users at C12345678."
+		This example shows how to call the Add-LocalGroupMember function with named parameters.
 	
 	.EXAMPLE
-		PS C:\> Add-GroupMember joan "Administrators"
+		PS C:\> Add-LocalGroupMember -UserName joan -Verbose -GroupName "Administrators"
 		'joan added in Administrators at $env:COMPUTERNAME'
-		This example shows how to call the Add-GroupMember function with positional parameters.
+		This example shows how to call the Add-LocalGroupMember function with positional parameters.
 	
 	.NOTES
-		Created on:   	12.05.2015 15:34
+		Created on:   	01.05.2015 20:27
 		Created by:   	luj
 
 	.INPUTS
 		System.String,System.String
 #>
-function Remove-GroupMember {
+function Add-LocalGroupMember {
 	[CmdletBinding()]
 	param
 		(
@@ -49,7 +50,8 @@ function Remove-GroupMember {
 	begin {
 		try {
 			Add-Type -AssemblyName System.DirectoryServices.AccountManagement
-		} catch {
+		}
+		catch {
 			Write-Verbose "Error ocurred!"
 			Write-Error $_.Exception.Message
 			
@@ -81,12 +83,13 @@ function Remove-GroupMember {
 			}
 			
 			# we add the user in the group
-			$group.Members.Remove($user)
+			$group.Members.add($user)
 			
 			$group.Save()
 			
-			Write-Verbose "$UserName deleted in $GroupName at $ComputerName."
-		} catch {
+			Write-Verbose "$UserName added in $GroupName at $ComputerName."
+		}
+		catch {
 			Write-Verbose "Error ocurred!"
 			Write-Error $_.Exception.Message
 		}

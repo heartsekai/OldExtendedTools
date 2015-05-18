@@ -3,7 +3,7 @@
 		Adds one or more members to an Computer group.
 	
 	.DESCRIPTION
-		A detailed description of the Add-GroupMember function.
+		A detailed description of the Get-LocalGroupMember function.
 	
 	.PARAMETER UserName
 		UserName in the domain.
@@ -15,14 +15,14 @@
 		A description of the GroupName parameter.
 	
 	.EXAMPLE
-		PS C:\> Add-GroupMember -UserName 'luj' -ComputerName C12345678
+		PS C:\> Get-LocalGroupMember -UserName 'luj' -ComputerName C12345678
 		"luj added in Remote Desktop Users at C12345678."
-		This example shows how to call the Add-GroupMember function with named parameters.
+		This example shows how to call the Get-LocalGroupMember function with named parameters.
 	
 	.EXAMPLE
-		PS C:\> Add-GroupMember -UserName joan -Verbose -GroupName "Administrators"
+		PS C:\> Get-LocalGroupMember -UserName joan -Verbose -GroupName "Administrators"
 		'joan added in Administrators at $env:COMPUTERNAME'
-		This example shows how to call the Add-GroupMember function with positional parameters.
+		This example shows how to call the Get-LocalGroupMember function with positional parameters.
 	
 	.NOTES
 		Created on:   	12.05.2015 12:50
@@ -31,7 +31,7 @@
 	.INPUTS
 		System.String,System.String
 #>
-function Get-GroupMember {
+function Get-LocalGroupMember {
 	[CmdletBinding()]
 	param
 		(
