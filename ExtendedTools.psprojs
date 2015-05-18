@@ -8,5 +8,6 @@
     <File>OS\Get-GroupMember.ps1</File>
     <File>ExtendedTools.psd1</File>
     <File>OS\Remove-Profile.ps1</File>
+    <File>OS\Remove-GroupMember.ps1</File>
   </OpenFiles>
 </ProjectState>

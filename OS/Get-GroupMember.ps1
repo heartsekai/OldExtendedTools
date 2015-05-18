@@ -68,8 +68,6 @@ function Get-GroupMember {
 			}
 			
 			$group.Members | Format-Wide Name -Column 1
-			
-			Write-Verbose "$UserName added in $GroupName at $ComputerName."
 		} catch {
 			Write-Verbose "Error ocurred!"
 			Write-Error $_.Exception.Message

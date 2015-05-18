@@ -41,10 +41,10 @@ function Add-GroupMember {
 		[string]$UserName,
 		
 		[Parameter(Position = 1)]
-		[String]$ComputerName = $env:COMPUTERNAME,
+		[string]$GroupName = "Remote Desktop Users",
 		
 		[Parameter(Position = 2)]
-		[string]$GroupName = "Remote Desktop Users"
+		[String]$ComputerName = $env:COMPUTERNAME
 	)
 	
 	begin {
