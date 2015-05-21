@@ -1,4 +1,5 @@
-﻿<#
+﻿
+<#
 	.SYNOPSIS
 		Remove a member from a Computer group.
 	
@@ -12,7 +13,7 @@
 		Computer Name where it will be applied. If no ComputerName is given, local Computer will take instead.
 	
 	.PARAMETER GroupName
-		Group name of the group where the user need to be removed.
+		Group name of the group where the user need to be removed. If no GroupName is given "Remote Desktop Users" will be taken.
 	
 	.EXAMPLE
 		PS C:\> Remove-LocalGroupMember -UserName 'luj' -ComputerName C12345678

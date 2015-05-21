@@ -1,7 +1,4 @@
-#
-# Set_LogonBackground.ps1
-#
-#Set-BackgroundLogon -SourceImage c:\temp\legolotr1.jpg -ComputerName C020794 -Verbose
+
 <#
 	.SYNOPSIS
 		Change the Logon Background.
@@ -14,7 +11,10 @@
 	
 	.PARAMETER ComputerName
 		A description of the ComputerName parameter.
-	
+
+	.EXAMPLE
+		PS C:\> Set-BackgroundLogon -SourceImage c:\temp\legolotr1.jpg -ComputerName C020794 -Verbose
+
 	.NOTES
 		Additional information about the function.
 #>

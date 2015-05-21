@@ -6,5 +6,6 @@
     <File>OS\Get-LocalGroupMember.ps1</File>
     <File>OS\Remove-LocalGroupMember.ps1</File>
     <File>OS\Remove-LocalProfile.ps1</File>
+    <File>OS\Get-LocalGroup.ps1</File>
   </OpenFiles>
 </ProjectState>

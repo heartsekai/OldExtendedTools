@@ -1,4 +1,5 @@
-﻿<#
+﻿
+<#
 	.SYNOPSIS
 		Remove Profiles
 	
@@ -17,7 +18,6 @@
 	
 	.NOTES
 		Created by:   	luj
-
 
 #>
 function Remove-LocalProfile {

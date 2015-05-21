@@ -11,9 +11,12 @@
     <File ReferenceName="Call-Set-BackgroundLogon_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundLogon.ps1</File>
     <File ReferenceName="Call-Set-ImageFilter_ps1" Build="0" CommandExtension="True">Shared\Set-ImageFilter.ps1</File>
     <File ReferenceName="Call-New-LocalUser_ps1" Build="0" CommandExtension="True">OS\New-LocalUser.ps1</File>
-    <File ReferenceName="Call-Add-LocalGroupMember_ps1" Build="0" CommandExtension="False">OS\Add-LocalGroupMember.ps1</File>
-    <File ReferenceName="Call-Get-LocalGroupMember_ps1" Build="0" CommandExtension="False">OS\Get-LocalGroupMember.ps1</File>
-    <File ReferenceName="Call-Remove-LocalGroupMember_ps1" Build="0" CommandExtension="False">OS\Remove-LocalGroupMember.ps1</File>
-    <File ReferenceName="Call-Remove-LocalProfile_ps1" Build="0" CommandExtension="False">OS\Remove-LocalProfile.ps1</File>
+    <File ReferenceName="Call-Add-LocalGroupMember_ps1" Build="0" CommandExtension="True">OS\Add-LocalGroupMember.ps1</File>
+    <File ReferenceName="Call-Get-LocalGroupMember_ps1" Build="0" CommandExtension="True">OS\Get-LocalGroupMember.ps1</File>
+    <File ReferenceName="Call-Remove-LocalGroupMember_ps1" Build="0" CommandExtension="True">OS\Remove-LocalGroupMember.ps1</File>
+    <File ReferenceName="Call-Remove-LocalProfile_ps1" Build="0" CommandExtension="True">OS\Remove-LocalProfile.ps1</File>
+    <File ReferenceName="Call-Get-LocalGroup_ps1" Build="0" CommandExtension="False">OS\Get-LocalGroup.ps1</File>
   </Files>
+  <StartupScript>
+  </StartupScript>
 </Project>

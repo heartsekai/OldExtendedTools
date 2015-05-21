@@ -1,6 +1,4 @@
-#
-# Set_ImageFilter.ps1
-#
+
 # foreach ($image in (Get-ChildItem "G:\IFS\PERSONEN\luj\H3D")) { Set-ImageFilter -Image $image.FullName -Output "G:\IFS\PERSONEN\luj\Background\$($image.Name)"}
 # https://msdn.microsoft.com/en-us/library/bb882583(v=vs.110).aspx
 <#
@@ -19,6 +17,9 @@
 	.PARAMETER Output
 		Where to save the Image
 	
+	.EXAMPLE
+		PS C:\>  Set-ImageFilter -Image c:\temp\image.jpg -Output "C:\temp\imageSmall.jpg"
+
 	.NOTES
 		Additional information about the function.
 #>

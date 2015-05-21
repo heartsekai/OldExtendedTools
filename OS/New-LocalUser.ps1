@@ -1,20 +1,4 @@
-﻿<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2015 v4.2.83
-	 Created on:   	02.05.2015 09:48
-	 Created by:   	luj
-	 Organization: 	
-	 Filename:     	
-	===========================================================================
-	.DESCRIPTION
-		A description of the file.
-#>
-
-
-
-
-
+﻿
 <#
 	.SYNOPSIS
 		Creates new local User.
@@ -56,7 +40,8 @@
 		PS C:\> New-LocalUser -UserName luj -Password "12345" -ComputerName C12345678
 	
 	.NOTES
-		Additional information about the function.
+	 	Created on:   	02.05.2015 09:48
+	 	Created by:   	luj
 #>
 function New-LocalUser {
 	param

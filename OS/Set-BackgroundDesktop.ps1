@@ -1,6 +1,4 @@
-#
-# Set_BackgroundDesktop.ps1
-#
+
 <#
 	.SYNOPSIS
 		Change Background
