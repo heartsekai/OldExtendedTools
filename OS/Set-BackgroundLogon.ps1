@@ -27,7 +27,7 @@ function Set-BackgroundLogon {
 		[String]$SourceImage,
 		
 		[ValidateScript({ Test-Connection $_ -Count 1 -Quiet })]
-		[String]$ComputerName = "localhost"
+		[String]$ComputerName = $env:COMPUTERNAME
 	)
 	
 	$ErrorActionPreference = 'Stop'
@@ -40,7 +40,7 @@ function Set-BackgroundLogon {
 	Write-Verbose "Filename =  $Filename"
 	
 	
-	if ($ComputerName -ne "localhost") {
+	if ($ComputerName -ne $env:COMPUTERNAME) {
 		$destinationFolder = "\\$ComputerName\C$\Windows\System32\oobe\info\backgrounds"
 	} else {
 		$destinationFolder = "C:\Windows\System32\oobe\info\backgrounds"
