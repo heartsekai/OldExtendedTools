@@ -21,10 +21,14 @@
 		This example shows how to call the Add-LocalGroupMember function with named parameters.
 	
 	.EXAMPLE
-		PS C:\> Add-LocalGroupMember -UserName joan -Verbose -GroupName "Administrators"
+		PS C:\> Add-LocalGroupMember joan -GroupName "Administrators"
 		'joan added in Administrators at $env:COMPUTERNAME'
 		This example shows how to call the Add-LocalGroupMember function with positional parameters.
 	
+	.EXAMPLE
+		PS C:\> Add-LocalGroupMember joan c012345 "Administrators"
+		'joan added in Administrators at c012345'
+		This example shows how to call the Add-LocalGroupMember function with positional parameters.
 	.NOTES
 		Created on:   	01.05.2015 20:27
 		Created by:   	luj
@@ -41,10 +45,10 @@ function Add-LocalGroupMember {
 		[string]$UserName,
 		
 		[Parameter(Position = 1)]
-		[string]$GroupName = "Remote Desktop Users",
-		
+		[String]$ComputerName = $env:COMPUTERNAME,
+	
 		[Parameter(Position = 2)]
-		[String]$ComputerName = $env:COMPUTERNAME
+		[string]$GroupName = "Remote Desktop Users"
 	)
 	
 	begin {

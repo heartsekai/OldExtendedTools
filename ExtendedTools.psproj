@@ -1,7 +1,11 @@
 ﻿<Project>
-  <Version>1</Version>
+  <Version>1.1</Version>
   <FileID>cec0815a-bb76-4719-960a-eeac1da6d76b</FileID>
   <ProjectType>1</ProjectType>
+  <Folders>
+    <Folder>OS</Folder>
+    <Folder>Shared</Folder>
+  </Folders>
   <Files>
     <File ReferenceName="" Build="2">ExtendedTools.psd1</File>
     <File ReferenceName="" Build="0">ExtendedTools.psm1</File>
@@ -10,13 +14,14 @@
     <File ReferenceName="Call-Set-BackgroundDesktop_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundDesktop.ps1</File>
     <File ReferenceName="Call-Set-BackgroundLogon_ps1" Build="0" CommandExtension="True">OS\Set-BackgroundLogon.ps1</File>
     <File ReferenceName="Call-Set-ImageFilter_ps1" Build="0" CommandExtension="True">Shared\Set-ImageFilter.ps1</File>
-    <File ReferenceName="Call-New-LocalUser_ps1" Build="0" CommandExtension="True">OS\New-LocalUser.ps1</File>
+    <File ReferenceName="Call-Add-LocalUser_ps1" Build="0" CommandExtension="True">OS\Add-LocalUser.ps1</File>
     <File ReferenceName="Call-Add-LocalGroupMember_ps1" Build="0" CommandExtension="True">OS\Add-LocalGroupMember.ps1</File>
     <File ReferenceName="Call-Get-LocalGroupMember_ps1" Build="0" CommandExtension="True">OS\Get-LocalGroupMember.ps1</File>
     <File ReferenceName="Call-Remove-LocalGroupMember_ps1" Build="0" CommandExtension="True">OS\Remove-LocalGroupMember.ps1</File>
     <File ReferenceName="Call-Remove-LocalProfile_ps1" Build="0" CommandExtension="True">OS\Remove-LocalProfile.ps1</File>
-    <File ReferenceName="Call-Get-LocalGroup_ps1" Build="0" CommandExtension="False">OS\Get-LocalGroup.ps1</File>
+    <File ReferenceName="Call-Get-LocalGroup_ps1" Build="0" CommandExtension="True">OS\Get-LocalGroup.ps1</File>
+    <File ReferenceName="Call-Get-LocalGroups_ps1" Build="0" CommandExtension="True">OS\Get-LocalGroups.ps1</File>
+    <File ReferenceName="Call-StartupSkript_ps1" Build="1" CommandExtension="False">OS\StartupSkript.ps1</File>
   </Files>
-  <StartupScript>
-  </StartupScript>
+  <StartupScript>D:\Mobiledata\luj\My Documents\Skripts\ExtendedTools\OS\StartupSkript.ps1</StartupScript>
 </Project>

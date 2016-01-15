@@ -43,7 +43,7 @@
 	 	Created on:   	02.05.2015 09:48
 	 	Created by:   	luj
 #>
-function New-LocalUser {
+function Add-LocalUser {
 	param
 		(
 		[Parameter(Mandatory = $true,

@@ -4,7 +4,7 @@
 		Adds one or more members to an Computer group.
 	
 	.DESCRIPTION
-		A detailed description of the Get-LocalGroup function.
+		A detailed description of the Get-LocalGroupMember function.
 	
 	.PARAMETER ComputerName
 		The description of a the ComputerName parameter.
@@ -13,29 +13,26 @@
 		A description of the GroupName parameter.
 	
 	.EXAMPLE
-		PS C:\> Get-LocalGroup "Remote Desktop Users" C12345678
+		PS C:\> Get-LocalGroupMember "Remote Desktop Users" C12345678
 		
 		This example shows a list of Users in the "Remote Desktop Users" Group on C12345678 computer.
 	
 	.EXAMPLE
-		PS C:\> Get-LocalGroup "Administrators"
+		PS C:\> Get-LocalGroupMember "Administrators"
 		
 		This example shows a list of Users in the Administrators Group on the local computer.
 	
 	.NOTES
-		Created on:   	12.05.2015 12:50
+		Created on:   	28.07.2015 11:48
 		Created by:   	luj
 
 	.INPUTS
 		System.String,System.String
 #>
-function Get-LocalGroup {
+function Get-LocalGroups {
 	[CmdletBinding()]
 	param
 	(
-		[Parameter(Mandatory = $true, Position = 0)]
-		[string]$GroupName,
-		[Parameter(Position = 1)]
 		[String]$ComputerName = $env:COMPUTERNAME
 	)
 	
@@ -57,15 +54,17 @@ function Get-LocalGroup {
 			
 			Test-Connection -ComputerName $ComputerName -Count 1 -Quiet -ErrorAction 'Stop' | Out-Null
 			
+			# http://stackoverflow.com/questions/9487517/how-to-query-active-directory-for-all-groups-and-group-members
 			$GroupContext = New-Object System.DirectoryServices.AccountManagement.PrincipalContext([System.DirectoryServices.AccountManagement.ContextType]::Machine, $ComputerName)
 			
-			$group = [System.DirectoryServices.AccountManagement.GroupPrincipal]::FindByIdentity($GroupContext, $GroupName)
+			$group = New-Object System.DirectoryServices.AccountManagement.GroupPrincipal($GroupContext)
 			
-			if (!$group) {
-				throw "$group not found in $($GroupContext.ContextType) on $ComputerName"
+			$search = New-Object System.DirectoryServices.AccountManagement.PrincipalSearcher($group)
+			
+			foreach ($group in $search.FindAll()) {
+				$group.SamAccountName
 			}
-			
-			$group.Members | Format-Wide Name -Column 1
+			# $group.Members | Format-Wide Name -Column 1
 		}
 		catch {
 			Write-Verbose "Error ocurred!"

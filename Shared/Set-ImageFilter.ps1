@@ -1,18 +1,17 @@
 
-# foreach ($image in (Get-ChildItem "G:\IFS\PERSONEN\luj\H3D")) { Set-ImageFilter -Image $image.FullName -Output "G:\IFS\PERSONEN\luj\Background\$($image.Name)"}
-# https://msdn.microsoft.com/en-us/library/bb882583(v=vs.110).aspx
 <#
 	.SYNOPSIS
 		Modify the Size of an Image
 	
 	.DESCRIPTION
-		If you have an image and want just change his JPEG Compression till it reaches a Maximum size.
+		If you have an image and want just change his JPEG Compression till it reaches a Maximum size. It was designed to fit the needs of
+		the Logon Background for Windows 7.
 	
 	.PARAMETER Image
 		Image to change
 	
 	.PARAMETER MaxSize
-		Default will be the size of Logon background.
+		Default will be the size of Logon background default 250Kb.
 	
 	.PARAMETER Output
 		Where to save the Image
@@ -20,8 +19,12 @@
 	.EXAMPLE
 		PS C:\>  Set-ImageFilter -Image c:\temp\image.jpg -Output "C:\temp\imageSmall.jpg"
 
+	.EXAMPLE
+		PS C:\> foreach ($image in (Get-ChildItem $source)) { Set-ImageFilter -Image $image.FullName -Output "$destination\$($image.Name)"}
+
 	.NOTES
-		Additional information about the function.
+		# 
+		# https://msdn.microsoft.com/en-us/library/bb882583(v=vs.110).aspx
 #>
 function Set-ImageFilter {
 	param
