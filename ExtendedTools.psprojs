@@ -1,8 +1,22 @@
 ﻿<ProjectState>
   <Version>1.0</Version>
   <FileID>cec0815a-bb76-4719-960a-eeac1da6d76b</FileID>
+  <OpenFolders>
+    <Folder>OS</Folder>
+    <Folder>Shared</Folder>
+  </OpenFolders>
   <OpenFiles>
     <File>OS\Get-LoggedOnUser.ps1</File>
     <File>OS\Set-BackgroundDesktop.ps1</File>
+    <File>OS\Add-LocalGroupMember.ps1</File>
+    <File>OS\Get-LocalGroup.ps1</File>
+    <File>OS\Add-LocalUser.ps1</File>
+    <File>ExtendedTools.psd1</File>
+    <File>ExtendedTools.psm1</File>
+    <File>OS\Get-LocalGroupMember.ps1</File>
+    <File>Shared\Set-ImageFilter.ps1</File>
+    <File>OS\Get-ComputerUptime.ps1</File>
+    <File>OS\Get-InstalledSoftware.ps1</File>
+    <File>OS\Remove-LocalProfile.ps1</File>
   </OpenFiles>
 </ProjectState>

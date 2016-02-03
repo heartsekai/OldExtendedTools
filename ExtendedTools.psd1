@@ -1,9 +1,9 @@
 ﻿<#	
 	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2015 v4.2.83
-	 Created on:   	01.05.2015 11:40
-	 Created by:   	luj
-	 Organization: 	
+	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2015 v4.2.99
+	 Created on:   	03.02.2016 08:09
+	 Created by:   	 
+	 Organization: 	 
 	 Filename:     	ExtendedTools.psd1
 	 -------------------------------------------------------------------------
 	 Module Manifest
@@ -18,19 +18,19 @@
 ModuleToProcess = 'ExtendedTools.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.3'
+ModuleVersion = '1.0.0.0'
 
 # ID used to uniquely identify this module
-GUID = 'cec0815a-bb76-4719-960a-eeac1da6d76b'
+GUID = 'bf660048-a706-4139-a987-16b94ec8a88f'
 
 # Author of this module
-Author = 'luj'
+Author = ' '
 
 # Company or vendor of this module
-CompanyName = 'Suva'
+CompanyName = ' '
 
 # Copyright statement for this module
-Copyright = '(c) 2015. All rights reserved.'
+Copyright = '(c) 2016. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'Module description'
