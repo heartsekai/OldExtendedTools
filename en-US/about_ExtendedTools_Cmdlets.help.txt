@@ -1,0 +1,167 @@
+TOPIC
+    about_ ExtendedTools_Cmdlets
+
+SHORT DESCRIPTION
+    Provides background information about the Background Intelligent Transfer
+    Service ( ExtendedTools).
+    
+LONG DESCRIPTION
+    This topic provides information about  ExtendedTools,  ExtendedTools transfer types,  ExtendedTools 
+    transfer persistence,  ExtendedTools transfer priority, the Windows PowerShell and
+     ExtendedTools cmdlets, and  ExtendedTools server configuration. This topic also provides 
+    links to more information about  ExtendedTools.
+
+                 
+  About  ExtendedTools
+
+       ExtendedTools is a file transfer service that provides a scriptable interface 
+      through Windows PowerShell.  ExtendedTools transfers files asynchronously in the 
+      foreground or in the background. And, it automatically resumes file 
+      transfers after network disconnections and after a computer is restarted.
+   
+      Background transfers use only idle network bandwidth in an effort to 
+      preserve the user’s interactive experience with other network 
+      applications such as Internet Explorer.  ExtendedTools does this by examining the 
+      network traffic and then using only the idle portion of the network 
+      bandwidth.  ExtendedTools continuously throttles its use of the bandwidth as the
+      user increases or decreases their use of the bandwidth.  ExtendedTools performs 
+      the transfers asynchronously, which means that your program or script 
+      does not have to be running for  ExtendedTools to perform the transfer. Both
+      uploads and downloads are supported.  ExtendedTools is particularly suitable for
+      copying files from an HTTP location in an Internet Information Services 
+      virtual directory to the logical drive of a client. Standard server 
+      message block (SMB) copy operations are also supported. In addition to
+      the scripting interface provided by Windows PowerShell,  ExtendedTools provides a 
+      set of COM APIs to allow programming access. 
+
+    
+   ExtendedTools Transfer Types
+
+      There are three types of  ExtendedTools transfer jobs:
+
+          - A download job downloads files to the client computer.
+
+          - An upload job uploads a file to the server.
+
+          - An upload-reply job uploads a file to the server and receives a 
+            reply file from the server application.
+
+    
+   ExtendedTools Transfer Persistence
+
+       ExtendedTools continues to transfer files after an application exits if the user 
+      who initiated the transfer remains logged on and if a network connection
+      is maintained.  ExtendedTools suspends the transfer if a connection is lost or if 
+      the user logs off.  ExtendedTools also persists the transfer information when a 
+      user logs off, when network disconnections occur, and when a computer is
+      restarted. When the user logs on again, when the network is reconnected, 
+      and when the computer is restarted,  ExtendedTools resumes the user's transfer 
+      job. 
+
+
+   ExtendedTools Transfer Priority
+
+       ExtendedTools provides one foreground and three background priority levels that 
+      you can use to prioritize transfer jobs. Higher priority jobs preempt
+      lower priority jobs. Jobs at the same priority level share transfer time,
+      which prevents a large job from blocking small jobs in the transfer 
+      queue. Lower priority jobs do not receive transfer time until all the 
+      higher priority jobs are complete or in an error state. Background 
+      transfers are optimal because  ExtendedTools uses idle network bandwidth to 
+      transfer the files.  ExtendedTools increases or decreases the rate at which files 
+      are transferred based on the amount of idle network bandwidth that is 
+      available. If a network application begins to consume more bandwidth, 
+       ExtendedTools decreases its transfer rate to preserve the user's interactive 
+      experience.  ExtendedTools supports multiple foreground jobs and one background
+      transfer job at the same time.
+
+
+  Windows PowerShell and the  ExtendedTools Cmdlets
+
+      Windows PowerShell implements  ExtendedTools functionality through the  ExtendedTools module
+      for Windows PowerShell. The  ExtendedTools module loads a set of  ExtendedTools-specific 
+      cmdlets. You can use these cmdlets to complete the end-to-end tasks 
+      that are necessary to manage the transfer of files between computers.
+ 
+      When the  ExtendedTools module for Windows PowerShell is loaded, the following 
+       ExtendedTools cmdlets are available.
+
+     
+          Cmdlet                  Descriptions
+          ---------               --------------------------------
+          Add- ExtendedToolsFile            Adds one or more files to a  ExtendedTools transfer.
+          Complete- ExtendedToolsTransfer   Completes a  ExtendedTools transfer.
+          Get- ExtendedToolsTransfer        Gets a single or multiple  ExtendedTools transfer.
+          Remove- ExtendedToolsTransfer     Deletes a  ExtendedTools transfer.
+          Resume- ExtendedToolsTransfer     Resumes a suspended  ExtendedTools transfer.
+          Set- ExtendedToolsTransfer        Configures  ExtendedTools transfer jobs.
+          Start- ExtendedToolsTransfer      Creates and starts a  ExtendedTools transfer job.
+          Suspend- ExtendedToolsTransfer    Suspends a  ExtendedTools transfer job.
+ 
+      To copy a file using  ExtendedTools:
+
+          1. Create a  ExtendedTools transfer job by using the Start- ExtendedToolsTranfer cmdlet,
+             optionally with the Suspend parameter. 
+
+          2. Add files to the  ExtendedTools transfer job by using the Add- ExtendedToolsFile 
+             cmdlet. 
+
+          3. Start the  ExtendedTools transfer by using the Resume- ExtendedToolsTransfer cmdlet. 
+
+          4. Check the status of the  ExtendedTools transfer job by using the 
+             Get- ExtendedToolsTransfer cmdlet.
+ 
+  Sample Commands
+   
+      A simple Windows PowerShell  ExtendedTools file transfer command might resemble 
+      the following command:
+     
+        C:\PS> Start- ExtendedToolsTransfer http://server01/servertestdir/testfile1.txt c:\clienttestdir\testfile1.txt
+     
+      
+      A slightly more complex Windows PowerShell  ExtendedTools file transfer set of 
+      commands might resemble the following command:
+     
+        C:\PS> Import-CSV filelist.txt | Start- ExtendedToolsTransfer -TransferType Upload
+
+
+   ExtendedTools Server Configuration
+
+      Background Intelligent Transfer Services ( ExtendedTools) server extends Internet 
+      Information Services (IIS) to support throttled uploads that can be 
+      restarted. To upload files to a server by using  ExtendedTools, the server must 
+      be running IIS 7.0 and Windows Server 2008. Additionally, the  ExtendedTools server
+      extension for the Internet Server Application Programming Interface 
+      (ISAPI) must be installed. The  ExtendedTools server extension is a subcomponent of
+      IIS. To use the upload feature, create an IIS virtual directory on the 
+      server where clients can upload files. Create a virtual directory for 
+      each type of client.  ExtendedTools adds properties to the IIS metabase 
+      for the virtual directory that you create, and it uses these properties 
+      to determine how to upload the files. For more information, see 
+     "Setting Up the Server for Uploads" in the MSDN library at 
+      http://go.microsoft.com/fwlink/?LinkId=142215.
+
+
+  More Information about  ExtendedTools
+    
+      For more information about  ExtendedTools, see the following topics in the MSDN
+      (Microsoft Developer Network) library:
+ 
+        - "Background Intelligent Transfer Service"
+          http://go.microsoft.com/fwlink/?LinkId=142216
+    
+        - "About  ExtendedTools"
+          http://go.microsoft.com/fwlink/?LinkId=142217
+ 
+
+SEE ALSO
+    Online version: http://go.microsoft.com/fwlink/?LinkId=142218
+    Add- ExtendedToolsFile
+    Complete- ExtendedToolsTransfer
+    Get- ExtendedToolsTransfer
+    Remove- ExtendedToolsTransfer
+    Resume- ExtendedToolsTransfer
+    Set- ExtendedToolsTransfer
+    Start- ExtendedToolsTransfer
+    Suspend- ExtendedToolsTransfer
+ 

@@ -18,16 +18,16 @@
 ModuleToProcess = 'ExtendedTools.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.0'
+ModuleVersion = '1.0.5'
 
 # ID used to uniquely identify this module
 GUID = 'bf660048-a706-4139-a987-16b94ec8a88f'
 
 # Author of this module
-Author = ' '
+Author = 'Joan Lustenberger'
 
 # Company or vendor of this module
-CompanyName = ' '
+CompanyName = 'Suva'
 
 # Copyright statement for this module
 Copyright = '(c) 2016. All rights reserved.'
