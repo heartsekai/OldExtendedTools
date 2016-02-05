@@ -759,6 +759,286 @@ function Set-ImageFilter {
 }
 
 
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
+function Write-CMTraceLog{
+     #Define and validate parameters 
+    [CmdletBinding()] 
+    Param( 
+ 
+        #Path to the log file 
+        [parameter(Mandatory=$False)]      
+        [String]$Logfile = "$Env:Temp\ExtendedTools-cmtrace.log",
+         
+        #The information to log 
+        [parameter(Mandatory=$True)] 
+        $Message,
+ 
+        #The severity (Error, Warning, Verbose, Debug, Information)
+        [parameter(Mandatory=$True)]
+        [ValidateSet('Warning','Error','Verbose','Debug', 'Information')] 
+        [String]$Type,
+ 
+        #Write back to the console or just to the log file. By default it will write back to the host.
+        [parameter(Mandatory=$False)]
+        [switch]$WriteBackToHost = $false
+ 
+    )#Param
+    
+    #Get the info about the calling script, function etc
+    $callinginfo = (Get-PSCallStack)[1]
+ 
+    #Set Source Information
+    $Source = (Get-PSCallStack)[1].Location
+ 
+    #Set Component Information
+    $Component = (Get-Process -Id $PID).ProcessName
+ 
+    #Set PID Information
+    $ProcessID = $PID
+ 
+    #Obtain UTC offset 
+    $DateTime = New-Object -ComObject WbemScripting.SWbemDateTime  
+    $DateTime.SetVarDate($(Get-Date)) 
+    $UtcValue = $DateTime.Value 
+    $UtcOffset = $UtcValue.Substring(21, $UtcValue.Length - 21)
+ 
+    #Set the order 
+    switch($Type){
+           'Warning' {$Severity = 2}#Warning
+             'Error' {$Severity = 3}#Error
+           'Verbose' {$Severity = 4}#Verbose
+             'Debug' {$Severity = 5}#Debug
+       'Information' {$Severity = 6}#Information
+    }#Switch
+ 
+    #Switch statement to write out to the log and/or back to the host.
+    switch ($severity){
+        2{
+            #Warning
+            
+            #Write the log entry in the CMTrace Format.
+             $logline = `
+            "<![LOG[$($($Type.ToUpper()) + ": " +  $message)]LOG]!>" +`
+            "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+            "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+            "component=`"$Component`" " +`
+            "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+            "type=`"$Severity`" " +`
+            "thread=`"$ProcessID`" " +`
+            "file=`"$Source`">";
+            $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;
+            
+            #Write back to the host if $Writebacktohost is true.
+            if(($WriteBackToHost) -and ($Type -eq 'Warning')){
+                Switch($PSCmdlet.GetVariableValue('WarningPreference')){
+                    'Continue' {$WarningPreference = 'Continue';Write-Warning -Message "$Message";$WarningPreference=''}
+                    'Stop' {$WarningPreference = 'Stop';Write-Warning -Message "$Message";$WarningPreference=''}
+                    'Inquire' {$WarningPreference ='Inquire';Write-Warning -Message "$Message";$WarningPreference=''}
+                    'SilentlyContinue' {}
+                }
+                Write-Warning -Message "$Message"
+            }
+ 
+        }#Warning
+        3{  
+            #Error
+ 
+            #This if statement is to catch the two different types of errors that may come through. A normal terminating exception will have all the information that is needed, if it's a user generated error by using Write-Error,
+            #then the else statment will setup all the information we would like to log.   
+            if($Message.exception.Message){                
+                if(($WriteBackToHost)-and($Type -eq 'Error')){                                        
+                    #Write the log entry in the CMTrace Format.
+                    $logline = `
+                    "<![LOG[$($($Type.ToUpper()) + ": " +  "$([String]$Message.exception.message)`r`r" + `
+                    "`nCommand: $($Message.InvocationInfo.MyCommand)" + `
+                    "`nScriptName: $($Message.InvocationInfo.Scriptname)" + `
+                    "`nLine Number: $($Message.InvocationInfo.ScriptLineNumber)" + `
+                    "`nColumn Number: $($Message.InvocationInfo.OffsetInLine)" + `
+                    "`nLine: $($Message.InvocationInfo.Line)")]LOG]!>" +`
+                    "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+                    "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+                    "component=`"$Component`" " +`
+                    "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+                    "type=`"$Severity`" " +`
+                    "thread=`"$ProcessID`" " +`
+                    "file=`"$Source`">"
+                    $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;
+                    #Write back to Host
+                    Switch($PSCmdlet.GetVariableValue('ErrorActionPreference')){
+                        'Stop'{$ErrorActionPreference = 'Stop';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");Write-Error $Message -ErrorAction 'Stop';$ErrorActionPreference=''}
+                        'Inquire'{$ErrorActionPreference = 'Inquire';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");Write-Error $Message -ErrorAction 'Inquire';$ErrorActionPreference=''}
+                        'Continue'{$ErrorActionPreference = 'Continue';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");$ErrorActionPreference=''}
+                        'Suspend'{$ErrorActionPreference = 'Suspend';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");Write-Error $Message -ErrorAction 'Suspend';$ErrorActionPreference=''}
+                        'SilentlyContinue'{}
+                    }
+ 
+                }
+                else{                   
+                    #Write the log entry in the CMTrace Format.
+                    $logline = `
+                    "<![LOG[$($($Type.ToUpper()) + ": " +  "$([String]$Message.exception.message)`r`r" + `
+                    "`nCommand: $($Message.InvocationInfo.MyCommand)" + `
+                    "`nScriptName: $($Message.InvocationInfo.Scriptname)" + `
+                    "`nLine Number: $($Message.InvocationInfo.ScriptLineNumber)" + `
+                    "`nColumn Number: $($Message.InvocationInfo.OffsetInLine)" + `
+                    "`nLine: $($Message.InvocationInfo.Line)")]LOG]!>" +`
+                    "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+                    "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+                    "component=`"$Component`" " +`
+                    "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+                    "type=`"$Severity`" " +`
+                    "thread=`"$ProcessID`" " +`
+                    "file=`"$Source`">"
+                    $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;
+                }
+            }
+            else{
+                if(($WriteBackToHost)-and($type -eq 'Error')){
+                    [System.Exception]$Exception = $Message
+                    [String]$ErrorID = 'Custom Error'
+                    [System.Management.Automation.ErrorCategory]$ErrorCategory = [Management.Automation.ErrorCategory]::WriteError
+                    #[System.Object]$Message
+                    $ErrorRecord = New-Object Management.automation.errorrecord ($Exception,$ErrorID,$ErrorCategory,$Message)
+                    $Message = $ErrorRecord
+                    #Write the log entry
+                    $logline = `
+                        "<![LOG[$($($Type.ToUpper()) + ": " +  "$([String]$Message.exception.message)`r`r" + `
+                        "`nFunction: $($Callinginfo.FunctionName)" + `
+                        "`nScriptName: $($Callinginfo.Scriptname)" + `
+                        "`nLine Number: $($Callinginfo.ScriptLineNumber)" + `
+                        "`nColumn Number: $($callinginfo.Position.StartColumnNumber)" + `
+                        "`nLine: $($Callinginfo.Position.StartScriptPosition.Line)")]LOG]!>" +`
+                        "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+                        "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+                        "component=`"$Component`" " +`
+                        "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+                        "type=`"$Severity`" " +`
+                        "thread=`"$ProcessID`" " +`
+                        "file=`"$Source`">"
+                        $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;
+                    #Write back to Host.
+                    Switch($PSCmdlet.GetVariableValue('ErrorActionPreference')){
+                            'Stop'{$ErrorActionPreference = 'Stop';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");Write-Error $Message -ErrorAction 'Stop';$ErrorActionPreference=''}
+                            'Inquire'{$ErrorActionPreference = 'Inquire';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");Write-Error $Message -ErrorAction 'Inquire';$ErrorActionPreference=''}
+                            'Continue'{$ErrorActionPreference = 'Continue';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");Write-Error $Message 2>&1 > $null;$ErrorActionPreference=''}
+                            'Suspend'{$ErrorActionPreference = 'Suspend';$Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)");Write-Error $Message -ErrorAction 'Suspend';$ErrorActionPreference=''}
+                            'SilentlyContinue'{}
+                        }
+                    $Host.Ui.WriteErrorLine("ERROR: $([String]$Message.Exception.Message)")
+                    Write-Error $Message 2>&1 > $null
+                }
+                else{
+                    #Write the Log Entry
+                    [System.Exception]$Exception = $Message
+                    [String]$ErrorID = 'Custom Error'
+                    [System.Management.Automation.ErrorCategory]$ErrorCategory = [Management.Automation.ErrorCategory]::WriteError
+                    #[System.Object]$Message
+                    $ErrorRecord = New-Object Management.automation.errorrecord ($Exception,$ErrorID,$ErrorCategory,$Message)
+                    $Message = $ErrorRecord
+                    #Write the log entry
+                    $logline = `
+                        "<![LOG[$($($Type.ToUpper())+ ": " +  "$([String]$Message.exception.message)`r`r" + `
+                        "`nFunction: $($Callinginfo.FunctionName)" + `
+                        "`nScriptName: $($Callinginfo.Scriptname)" + `
+                        "`nLine Number: $($Callinginfo.ScriptLineNumber)" + `
+                        "`nColumn Number: $($Callinginfo.Position.StartColumnNumber)" + `
+                        "`nLine: $($Callinginfo.Position.StartScriptPosition.Line)")]LOG]!>" +`
+                        "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+                        "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+                        "component=`"$Component`" " +`
+                        "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+                        "type=`"$Severity`" " +`
+                        "thread=`"$ProcessID`" " +`
+                        "file=`"$Source`">"
+                        $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;
+                }                
+            }   
+        }#Error
+        4{  
+            #Verbose
+            
+            #Write the Log Entry
+            
+            $logline = `
+            "<![LOG[$($($Type.ToUpper()) + ": " +  $message)]LOG]!>" +`
+            "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+            "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+            "component=`"$Component`" " +`
+            "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+            "type=`"$severity`" " +`
+            "thread=`"$processid`" " +`
+            "file=`"$source`">";
+            $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile; 
+            
+            #Write Back to Host
+                
+            if(($WriteBackToHost) -and ($Type -eq 'Verbose')){
+                Switch ($PSCmdlet.GetVariableValue('VerbosePreference')) {
+                    'Continue' {$VerbosePreference = 'Continue'; Write-Verbose -Message "$Message";$VerbosePreference = ''}
+                    'Inquire' {$VerbosePreference = 'Inquire'; Write-Verbose -Message "$Message";$VerbosePreference = ''}
+                    'Stop' {$VerbosePreference = 'Stop'; Write-Verbose -Message "$Message";$VerbosePreference = ''}
+                }
+            }              
+       
+        }#Verbose
+        5{  
+            #Debug
+ 
+            #Write the Log Entry
+            
+            $logline = `
+            "<![LOG[$($($Type.ToUpper()) + ": " +  $message)]LOG]!>" +`
+            "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+            "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+            "component=`"$Component`" " +`
+            "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+            "type=`"$severity`" " +`
+            "thread=`"$processid`" " +`
+            "file=`"$source`">";
+            $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;  
+ 
+            #Write Back to the Host.                              
+ 
+            if(($WriteBackToHost) -and ($Type -eq 'Debug')){
+                Switch ($PSCmdlet.GetVariableValue('DebugPreference')){
+                    'Continue' {$DebugPreference = 'Continue'; Write-Debug -Message "$Message";$DebugPreference = ''}
+                    'Inquire' {$DebugPreference = 'Inquire'; Write-Debug -Message "$Message";$DebugPreference = ''}
+                    'Stop' {$DebugPreference = 'Stop'; Write-Debug -Message "$Message";$DebugPreference = ''}
+                }
+            } 
+                      
+        }#Debug
+        6{  
+            #Information
+ 
+            #Write entry to the logfile.
+ 
+            $logline = `
+            "<![LOG[$($($Type.ToUpper()) + ": " + $message)]LOG]!>" +`
+            "<time=`"$(Get-Date -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+            "date=`"$(Get-Date -Format M-d-yyyy)`" " +`
+            "component=`"$Component`" " +`
+            "context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+            "type=`"$severity`" " +`
+            "thread=`"$processid`" " +`
+            "file=`"$source`">";            
+            $logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;
+ 
+            #Write back to the host.
+ 
+            if(($WriteBackToHost) -and ($Type -eq 'Information')){
+                Switch ($PSCmdlet.GetVariableValue('InformationPreference')){
+                    'Continue' {$InformationPreference = 'Continue'; Write-Information -Message "INFORMATION: $Message";$InformationPreference = ''}
+                    'Inquire' {$InformationPreference = 'Inquire'; Write-Information -Message "INFORMATION: $Message";$InformationPreference = ''}
+                    'Stop' {$InformationPreference = 'Stop'; Write-Information -Message "INFORMATION: $Message";$InformationPreference = ''}
+                    'Suspend' {$InformationPreference = 'Suspend';Write-Information -Message "INFORMATION: $Message";$InformationPreference = ''}
+                }
+            }
+        }#Information
+    }#Switch
+}#Function v1.3 - 23-12-2015
+
+
 Export-ModuleMember Remove-LocalProfile,
 					Add-LocalGroupMember,
 					Add-LocalUser,
@@ -771,4 +1051,5 @@ Export-ModuleMember Remove-LocalProfile,
 					Remove-LocalGroupMember,
 					Set-BackgroundDesktop,
 					Set-BackgroundLogon,
-					Set-ImageFilter
+					Set-ImageFilter,
+					Write-CMTraceLog

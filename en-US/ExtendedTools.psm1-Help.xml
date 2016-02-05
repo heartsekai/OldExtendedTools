@@ -1413,4 +1413,168 @@ the Logon Background for Windows 7.</maml:para>
 		</command:examples>
 	</command:command>
 	<!-- Edited with: SAPIEN PowerShell HelpWriter 2015 v1.0.16-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!-- Command-->
+		<command:details>
+			<command:name>Write-CMTraceLog</command:name>
+			<maml:description>
+				<maml:para>Write to a log file in a format that takes advantage of the CMTrace.exe log viewer that comes with SCCM.</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para>
+				</maml:para>
+			</maml:copyright>
+			<command:verb>Write</command:verb>
+			<command:noun>CMTraceLog</command:noun>
+			<dev:version/>
+		</command:details>
+		<maml:description>
+			<maml:para>Output strings to a log file that is formatted for use with CMTRace.exe and also writes back to the host.
+ 
+The severity of the logged line can be set as: 
+ 
+     2-Error
+     3-Warning
+     4-Verbose
+     5-Debug
+     6-Information
+
+Warnings will be highlighted in yellow. Errors are highlighted in red. 
+ 
+The tools to view the log: 
+ 
+CM Trace - https://www.microsoft.com/en-us/download/details.aspx?id=50012 or the Installation directory on Configuration Manager 2012 Site Server - &lt;Install Directory&gt;\tools\</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!-- Parameter Sets-->
+		</command:syntax>
+		<command:parameters>
+			<!-- All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>Logfile</maml:name>
+				<maml:description>
+					<maml:para>path to the log</maml:para>
+				</maml:description>
+				<command:parameterValue required="false">string</command:parameterValue>
+				<dev:defaultValue>$Env:Temp\ExtendedTools-cmtrace.log</dev:defaultValue>
+			</command:parameter>
+			<command:parameter required="true" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>Message</maml:name>
+				<maml:description>
+					<maml:para>Message to be recorded</maml:para>
+				</maml:description>
+				<command:parameterValue required="true">string</command:parameterValue>
+				<dev:defaultValue>
+				</dev:defaultValue>
+			</command:parameter>
+			<command:parameter required="true" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>Type</maml:name>
+				<maml:description>
+					<maml:para>One of the defined severity&apos;Warning&apos;,&apos;Error&apos;,&apos;Verbose&apos;,&apos;Debug&apos;, &apos;Information&apos;</maml:para>
+				</maml:description>
+				<command:parameterValue required="true">string</command:parameterValue>
+				<dev:defaultValue>
+				</dev:defaultValue>
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>WriteBackToHost</maml:name>
+				<maml:description>
+					<maml:para>Write the ouput on the console</maml:para>
+				</maml:description>
+				<command:parameterValue required="false">switch</command:parameterValue>
+				<dev:defaultValue>false</dev:defaultValue>
+			</command:parameter>
+		</command:parameters>
+		<maml:alertSet>
+			<maml:title>Change Log</maml:title>
+			<!-- Notes-->
+			<maml:alert>
+				<maml:para>v1.3 - 23-12-2015 - Commented out line 224 and 249 as it was causing a duplicaton of the message.
+
+##########
+
+v1.2 - Fixed inheritance of preference variables from parent scopes finally!! Changed from using
+        using get-variable -scope 1 (which doesn&apos;t work when a script modules calls a function:
+        See this Microsoft Connect bug https://connect.microsoft.com/PowerShell/feedback/details/1606119.)
+        Anyway now now i use the $PSCmdlet.GetVariableValue(&apos;VerbosePreference&apos;) command and it works.
+
+##########
+
+v1.1 - Found a bug with the get-variable scope. Need to refer to 2 parent scopes for the writebacktohost to work.
+     - Changed all Get-Variable commands to use Scope 2, instead of Scope 1.
+
+##########
+
+v1.0 - Script Created</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<!-- Examples-->
+			<command:example>
+				<maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:para>PS C:\&gt;</maml:para>
+				</maml:introduction>
+				<dev:code>Try{
+    Get-Process -Name DoesnotExist -ea stop
+}
+Catch{
+    Write-CMTraceLog -Logfile &quot;C:\output\logfile.log -Message $Error[0] -Type Error
+}</dev:code>
+				<dev:remarks>
+					<maml:para>This will write a line to the logfile.log file in c:\output\logfile.log. It will state the errordetails in the log file and highlight the line in Red. It will also write back to the host in a friendlier red on black message than the normal error record.</maml:para>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:para>PS C:\&gt;</maml:para>
+				</maml:introduction>
+				<dev:code>$VerbosePreference = Continue
+Write-CMTraceLog -Message &quot;This is a verbose message.&quot; -Type Verbose</dev:code>
+				<dev:remarks>
+					<maml:para>This example will write a verbose entry into the log file and also write back to the host. The Write-CMTraceLog will obey the preference variables.</maml:para>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:para>PS C:\&gt;</maml:para>
+				</maml:introduction>
+				<dev:code>Write-CMTraceLog -Message &quot;This is an informational message&quot; -Type Information -WritebacktoHost:$false</dev:code>
+				<dev:remarks>
+					<maml:para>This example will write the informational message to the log but not back to the host.</maml:para>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:para>
+					</maml:para>
+				</maml:introduction>
+				<dev:code>Function Test{
+    [cmdletbinding()]
+    Param()
+    Write-CMTraceLog -Message &quot;This is a verbose message&quot; -Type Verbose
+}
+PS C:\&gt; Test -Verbose</dev:code>
+				<dev:remarks>
+					<maml:para>This example shows how to use write-cmtracelog inside a function and then call the function with the -verbose switch.
+The write-cmtracelog function will then print the verbose message.</maml:para>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+		<maml:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>Online version:</maml:linkText>
+				<maml:uri>http://www.wolffhaven45.com/blog/powershell/write-cmtracelog-dropping-logs-like-a-boss/</maml:uri>
+			</maml:navigationLink>
+			<!-- Links-->
+			<maml:navigationLink>
+				<maml:linkText>CMTrace Download</maml:linkText>
+				<maml:uri>https://www.microsoft.com/en-us/download/details.aspx?id=50012</maml:uri>
+			</maml:navigationLink>
+		</maml:relatedLinks>
+	</command:command>
+	<!-- Edited with: SAPIEN PowerShell HelpWriter 2015 v1.0.16-->
 </helpItems>
