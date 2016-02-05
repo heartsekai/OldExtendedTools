@@ -9,7 +9,7 @@
 	 Module Name: ExtendedTools
 	===========================================================================
 #>
-
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Remove-LocalProfile {
 	[CmdletBinding()]
 	param (
@@ -63,43 +63,7 @@ function Remove-LocalProfile {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Adds one or more members to an Computer group.
-	
-	.DESCRIPTION
-		A detailed description of the Add-LocalGroupMember function.
-	
-	.PARAMETER UserName
-		UserName in the domain.
-	
-	.PARAMETER ComputerName
-		The description of a the ComputerName parameter.
-	
-	.PARAMETER GroupName
-		A description of the GroupName parameter.
-	
-	.EXAMPLE
-		PS C:\> Add-LocalGroupMember -UserName 'luj' -ComputerName C12345678
-		"luj added in Remote Desktop Users at C12345678."
-		This example shows how to call the Add-LocalGroupMember function with named parameters.
-	
-	.EXAMPLE
-		PS C:\> Add-LocalGroupMember joan -GroupName "Administrators"
-		'joan added in Administrators at $env:COMPUTERNAME'
-		This example shows how to call the Add-LocalGroupMember function with positional parameters.
-	
-	.EXAMPLE
-		PS C:\> Add-LocalGroupMember joan c012345 "Administrators"
-		'joan added in Administrators at c012345'
-		This example shows how to call the Add-LocalGroupMember function with positional parameters.
-	.NOTES
-		Created on:   	01.05.2015 20:27
-		Created by:   	luj
-
-	.INPUTS
-		System.String,System.String
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Add-LocalGroupMember {
 	[CmdletBinding()]
 	param
@@ -167,50 +131,7 @@ function Add-LocalGroupMember {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Creates new local User.
-	
-	.DESCRIPTION
-		Creates new local User on the specified computer.
-	
-	.PARAMETER UserName
-		Username of the new User to be created
-	
-	.PARAMETER ComputerName
-		Specifies where to create the User, per Default is the localmachine.
-	
-	.PARAMETER DisplayName
-		A description of the DisplayName parameter.
-	
-	.PARAMETER Description
-		A description of the Description parameter.
-	
-	.PARAMETER Password
-		A description of the Password parameter.
-	
-	.PARAMETER ChangePasswordAtNextLogon
-		A description of the ChangePasswordAtNextLogon parameter.
-	
-	.PARAMETER CannotChangePassword
-		A description of the CannotChangePassword parameter.
-	
-	.PARAMETER IsDisabled
-		A description of the IsDisabled parameter.
-	
-	.PARAMETER PasswordNeverExpires
-		A description of the PasswordNeverExpires parameter.
-	
-	.PARAMETER FullName
-		Full name of the new User.
-	
-	.EXAMPLE
-		PS C:\> New-LocalUser -UserName luj -Password "12345" -ComputerName C12345678
-	
-	.NOTES
-	 	Created on:   	02.05.2015 09:48
-	 	Created by:   	luj
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Add-LocalUser {
 	param
 		(
@@ -306,18 +227,7 @@ function Add-LocalUser {
 	}
 }
 
-<#	
-	.NOTES
-	===========================================================================
-	 Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2015 v4.2.99
-	 Created on:   	28.01.2016 08:28
-	 Created by:   	 
-	 Organization: 	 
-	 Filename:     	Get-ComputerUptime.ps1
-	===========================================================================
-	.DESCRIPTION
-		A description of the file.
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-ComputerUptime {
 	param (
 		[String]$ComputerName = $env:COMPUTERNAME
@@ -329,6 +239,7 @@ function Get-ComputerUptime {
 	
 }
 
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-InstalledSoftware {
 	try {
         # Check if its 64 or 32 Bit Computer
@@ -356,36 +267,7 @@ function Get-InstalledSoftware {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Adds one or more members to an Computer group.
-	
-	.DESCRIPTION
-		A detailed description of the Get-LocalGroup function.
-	
-	.PARAMETER ComputerName
-		The description of a the ComputerName parameter.
-	
-	.PARAMETER GroupName
-		A description of the GroupName parameter.
-	
-	.EXAMPLE
-		PS C:\> Get-LocalGroup "Remote Desktop Users" C12345678
-		
-		This example shows a list of Users in the "Remote Desktop Users" Group on C12345678 computer.
-	
-	.EXAMPLE
-		PS C:\> Get-LocalGroup "Administrators"
-		
-		This example shows a list of Users in the Administrators Group on the local computer.
-	
-	.NOTES
-		Created on:   	12.05.2015 12:50
-		Created by:   	luj
-
-	.INPUTS
-		System.String,System.String
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-LocalGroup {
 	[CmdletBinding()]
 	param
@@ -434,36 +316,7 @@ function Get-LocalGroup {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Get a list of groups where the member.
-	
-	.DESCRIPTION
-		Get-LocalGroupMember list all the local groups from a given computer where the user belongs.
-	
-	.PARAMETER ComputerName
-		The ComputerName where the command will be done, if no ComputerName is given the current computer will be taken instead.
-	
-	.PARAMETER UserName
-		A description of the GroupName parameter.
-	
-	.EXAMPLE
-		PS C:\> Get-LocalGroupMember "Remote Desktop Users" C12345678
-		
-		This example shows a list of Users in the "Remote Desktop Users" Group on C12345678 computer.
-	
-	.EXAMPLE
-		PS C:\> Get-LocalGroupMember "Administrators"
-		
-		This example shows a list of Users in the Administrators Group on the local computer.
-	
-	.NOTES
-		Created on:   	12.05.2015 12:50
-		Created by:   	luj
-
-	.INPUTS
-		System.String,System.String
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-LocalGroupMember {
 	[CmdletBinding()]
 	param
@@ -535,36 +388,7 @@ function Get-LocalGroupMember {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Adds one or more members to an Computer group.
-	
-	.DESCRIPTION
-		A detailed description of the Get-LocalGroupMember function.
-	
-	.PARAMETER ComputerName
-		The description of a the ComputerName parameter.
-	
-	.PARAMETER GroupName
-		A description of the GroupName parameter.
-	
-	.EXAMPLE
-		PS C:\> Get-LocalGroupMember "Remote Desktop Users" C12345678
-		
-		This example shows a list of Users in the "Remote Desktop Users" Group on C12345678 computer.
-	
-	.EXAMPLE
-		PS C:\> Get-LocalGroupMember "Administrators"
-		
-		This example shows a list of Users in the Administrators Group on the local computer.
-	
-	.NOTES
-		Created on:   	28.07.2015 11:48
-		Created by:   	luj
-
-	.INPUTS
-		System.String,System.String
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-LocalGroups {
 	[CmdletBinding()]
 	param
@@ -612,6 +436,7 @@ function Get-LocalGroups {
 	}
 }
 
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-LoggedOnUser {
 	#Require -Version 2.0 and Running as local admin.           
 	[CmdletBinding()]
@@ -651,39 +476,7 @@ function Get-LoggedOnUser {
 	
 }
 
-<#
-	.SYNOPSIS
-		Remove a member from a Computer group.
-	
-	.DESCRIPTION
-		A detailed description of the Remove-LocalGroupMember function.
-	
-	.PARAMETER UserName
-		UserName in the domain.
-	
-	.PARAMETER ComputerName
-		Computer Name where it will be applied. If no ComputerName is given, local Computer will take instead.
-	
-	.PARAMETER GroupName
-		Group name of the group where the user need to be removed. If no GroupName is given "Remote Desktop Users" will be taken.
-	
-	.EXAMPLE
-		PS C:\> Remove-LocalGroupMember -UserName 'luj' -ComputerName C12345678
-		"luj deleted in Remote Desktop Users at C12345678."
-		This example shows how to call the Remove-LocalGroupMember function with named parameters.
-	
-	.EXAMPLE
-		PS C:\> Remove-LocalGroupMember joan "Administrators"
-		'joan added in Administrators at $env:COMPUTERNAME'
-		This example shows how to call the Remove-LocalGroupMember function with positional parameters.
-	
-	.NOTES
-		Created on:   	12.05.2015 15:34
-		Created by:   	luj
-
-	.INPUTS
-		System.String,System.String
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Remove-LocalGroupMember {
 	[CmdletBinding()]
 	param
@@ -749,31 +542,7 @@ function Remove-LocalGroupMember {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Change Background
-	
-	.DESCRIPTION
-		Change Background from the specified computer or the current one.
-	
-	.PARAMETER SourceImage
-		A description of the SourceImage parameter.
-	
-	.PARAMETER ComputerName
-		A description of the ComputerName parameter.
-	
-	.PARAMETER UserName
-		A description of the UserName parameter.
-	
-	.PARAMETER DestinationFolder
-		A description of the DestinationFolder parameter.
-	
-	.NOTES
-		Created by:   	luj
-	
-	.EXAMPLE
-		Set-BackgroundDesktop -SourceImage C:\temp\legolotr.jpg -UserName h3d -ComputerName C020794
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Set-BackgroundDesktop {
 	[CmdletBinding()]
 	param
@@ -862,25 +631,7 @@ function Set-BackgroundDesktop {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Change the Logon Background.
-	
-	.DESCRIPTION
-		Change the Logon Background from a Computer. If no Computer is defined it will change the current computer Logon Background
-	
-	.PARAMETER SourceImage
-		A description of the SourceImage parameter.
-	
-	.PARAMETER ComputerName
-		A description of the ComputerName parameter.
-
-	.EXAMPLE
-		PS C:\> Set-BackgroundLogon -SourceImage c:\temp\legolotr1.jpg -ComputerName C020794 -Verbose
-
-	.NOTES
-		Additional information about the function.
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Set-BackgroundLogon {
 	[CmdletBinding()]
 	param
@@ -964,33 +715,7 @@ function Set-BackgroundLogon {
 	}
 }
 
-<#
-	.SYNOPSIS
-		Modify the Size of an Image
-	
-	.DESCRIPTION
-		If you have an image and want just change his JPEG Compression till it reaches a Maximum size. It was designed to fit the needs of
-		the Logon Background for Windows 7.
-	
-	.PARAMETER Image
-		Image to change
-	
-	.PARAMETER MaxSize
-		Default will be the size of Logon background default 250Kb.
-	
-	.PARAMETER Output
-		Where to save the Image
-	
-	.EXAMPLE
-		PS C:\>  Set-ImageFilter -Image c:\temp\image.jpg -Output "C:\temp\imageSmall.jpg"
-
-	.EXAMPLE
-		PS C:\> foreach ($image in (Get-ChildItem $source)) { Set-ImageFilter -Image $image.FullName -Output "$destination\$($image.Name)"}
-
-	.NOTES
-		# 
-		# https://msdn.microsoft.com/en-us/library/bb882583(v=vs.110).aspx
-#>
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Set-ImageFilter {
 	param
 		(

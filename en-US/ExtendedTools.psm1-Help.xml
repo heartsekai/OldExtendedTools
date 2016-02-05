@@ -26,8 +26,7 @@
 						<maml:para>Computer name to look at. It can be an array of computers.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 					<maml:name>UserName</maml:name>
@@ -35,8 +34,7 @@
 						<maml:para>Username witch the profile must be deleted.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
@@ -51,8 +49,7 @@
 					<maml:name>System.String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 				<maml:name>UserName</maml:name>
@@ -64,19 +61,20 @@
 					<maml:name>System.String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 		</command:parameters>
 		<command:examples>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 1 --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para>his example shows how to call the Remove-LocalProfile function with named parameters.</maml:para>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Remove-LocalProfile -ComputerName c508001 -UserName luj</dev:code>
+				<dev:code>Remove-LocalProfile -ComputerName c508001 -UserName luj</dev:code>
 				<dev:remarks>
-					<maml:para>luj profile deleted successfully on c508001</maml:para>
+					<maml:para>luj profile deleted successfully on c508001
+
+This example shows how to call the Remove-LocalProfile function with named parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -103,11 +101,10 @@
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="">
 					<maml:name>UserName</maml:name>
 					<maml:description>
-						<maml:para>User to be added into a local group.</maml:para>
+						<maml:para>UserName in the domain.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 					<maml:name>ComputerName</maml:name>
@@ -120,11 +117,10 @@
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="">
 					<maml:name>GroupName</maml:name>
 					<maml:description>
-						<maml:para>Group Name of the group where the user needs to be added.</maml:para>
+						<maml:para>Group Name of the Localgroup where the user needs to be added.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
@@ -132,15 +128,14 @@
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="">
 				<maml:name>UserName</maml:name>
 				<maml:description>
-					<maml:para>User to be added into a local group.</maml:para>
+					<maml:para>UserName in the domain.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
 				<dev:type>
 					<maml:name>string</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 				<maml:name>ComputerName</maml:name>
@@ -157,15 +152,14 @@
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="">
 				<maml:name>GroupName</maml:name>
 				<maml:description>
-					<maml:para>Group Name of the group where the user needs to be added.</maml:para>
+					<maml:para>Group Name of the Localgroup where the user needs to be added.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">string</command:parameterValue>
 				<dev:type>
 					<maml:name>string</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 		</command:parameters>
 		<command:inputTypes>
@@ -190,36 +184,40 @@ Created by:   	luj</maml:para>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 0  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para>This example shows how to call the Add-LocalGroupMember function with named parameters.</maml:para>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Add-LocalGroupMember -UserName &apos;luj&apos; -ComputerName C12345678
+				<dev:code>Add-LocalGroupMember -UserName &apos;luj&apos; -ComputerName C12345678
 				</dev:code>
 				<dev:remarks>
-					<maml:para>&quot;luj added in Remote Desktop Users at C12345678.&quot;</maml:para>
+					<maml:para>&quot;luj added in Remote Desktop Users at C12345678.&quot;
+
+This example shows how to call the Add-LocalGroupMember function with named parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 1  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para>This example shows how to call the Add-LocalGroupMember function with positional parameters.</maml:para>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Add-LocalGroupMember joan -GroupName &quot;Administrators&quot;
+				<dev:code>Add-LocalGroupMember joan -GroupName &quot;Administrators&quot;
 				</dev:code>
 				<dev:remarks>
 					<maml:para>&apos;joan added in Administrators at $env:COMPUTERNAME&apos;
-					</maml:para>
+
+This example shows how to call the Add-LocalGroupMember function with positional parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 2  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para>This example shows how to call the Add-LocalGroupMember function with positional parameters.</maml:para>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Add-LocalGroupMember joan c012345 &quot;Administrators&quot;
+				<dev:code>Add-LocalGroupMember joan c012345 &quot;Administrators&quot;
 				</dev:code>
 				<dev:remarks>
 					<maml:para>&apos;joan added in Administrators at c012345&apos;
-					</maml:para>
+
+This example shows how to call the Add-LocalGroupMember function with positional parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -264,8 +262,7 @@ Created by:   	luj</maml:para>
 						<maml:para>Name to be displayed when the user logs in.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>Description</maml:name>
@@ -273,8 +270,7 @@ Created by:   	luj</maml:para>
 						<maml:para>Description to be added.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>Password</maml:name>
@@ -282,8 +278,7 @@ Created by:   	luj</maml:para>
 						<maml:para>Password for the User.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>ChangePasswordAtNextLogon</maml:name>
@@ -354,8 +349,7 @@ Created by:   	luj</maml:para>
 					<maml:name>string</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>Description</maml:name>
@@ -367,8 +361,7 @@ Created by:   	luj</maml:para>
 					<maml:name>string</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>Password</maml:name>
@@ -380,8 +373,7 @@ Created by:   	luj</maml:para>
 					<maml:name>string</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>ChangePasswordAtNextLogon</maml:name>
@@ -472,27 +464,28 @@ Created by:   	luj</maml:para>
 		<command:syntax>
 			<command:syntaxItem>
 				<maml:name>Get-ComputerUptime</maml:name>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para/>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue>localhost</dev:defaultValue>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
 		<command:parameters>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para/>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue/>
+				<dev:defaultValue>localhost</dev:defaultValue>
 			</command:parameter>
 		</command:parameters>
 		<maml:alertSet>
@@ -511,11 +504,25 @@ Filename:     	Get-ComputerUptime.ps1
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 1 --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-ComputerUptime -ComputerName &#39;Value1&#39;</dev:code>
+				<dev:code>Get-ComputerUptime -ComputerName &apos;Value1&apos;</dev:code>
 				<dev:remarks>
 					<maml:para>Write example description here.</maml:para>
+				</dev:remarks>
+			</command:example>
+			<command:example>
+				<maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:para>PS C:\&gt;</maml:para>
+				</maml:introduction>
+				<dev:code>Get-ComputerUptime</dev:code>
+				<dev:remarks>
+					<maml:para>__SERVER                                                    UpTime
+--------                                                    ------
+C060220                                                     4.03:48:12.8563838
+
+This example shows how to call the Get-ComputerUptime function with default parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -546,11 +553,17 @@ Filename:     	Get-ComputerUptime.ps1
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 1 --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-InstalledSoftware</dev:code>
+				<dev:code>Get-InstalledSoftware</dev:code>
 				<dev:remarks>
-					<maml:para>Write example description here.</maml:para>
+					<maml:para>Microsoft Visual Studio 2015 Update 1 Diagnostic Tools - x86
+Visual C++ IDE Core Professional Plus Resource Package
+Visual C++ Compiler/Tools X86 Base Package
+Microsoft .NET Framework 4.6.1 Targeting Pack
+ThinkPad OneLink Dock
+Microsoft .NET Framework 4.6.1 Targeting Pack (ENU)
+...</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -574,27 +587,29 @@ Filename:     	Get-ComputerUptime.ps1
 		<command:syntax>
 			<command:syntaxItem>
 				<maml:name>Get-LocalGroup</maml:name>
-				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+				<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="">
 					<maml:name>GroupName</maml:name>
 					<maml:description>
-						<maml:para>A description of the GroupName parameter.</maml:para>
+						<maml:para>Localgroup to query for users.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+					<dev:defaultValue/>
 				</command:parameter>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
-						<maml:para>The description of a the ComputerName parameter.</maml:para>
+						<maml:para>Computername to do the query.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue>localhost</dev:defaultValue>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
 		<command:parameters>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="">
 				<maml:name>GroupName</maml:name>
 				<maml:description>
-					<maml:para>A description of the GroupName parameter.</maml:para>
+					<maml:para>Localgroup to query for users.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
 				<dev:type>
@@ -603,17 +618,17 @@ Filename:     	Get-ComputerUptime.ps1
 				</dev:type>
 				<dev:defaultValue/>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
-					<maml:para>The description of a the ComputerName parameter.</maml:para>
+					<maml:para>Computername to do the query.</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue/>
+				<dev:defaultValue>localhost</dev:defaultValue>
 			</command:parameter>
 		</command:parameters>
 		<command:inputTypes>
@@ -638,23 +653,39 @@ Created by:   	luj</maml:para>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 0  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-LocalGroup &quot;Remote Desktop Users&quot; C12345678
+				<dev:code>Get-LocalGroup &quot;Remote Desktop Users&quot; C12345678
 				</dev:code>
 				<dev:remarks>
-					<maml:para>This example shows a list of Users in the &quot;Remote Desktop Users&quot; Group on C12345678 computer.</maml:para>
+					<maml:para>This example shows a list of Users in the &quot;Remote Desktop Users&quot; Group on C12345678 computer.
+
+
+This example shows how to call the Get-LocalGroup function with positional parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 1  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-LocalGroup &quot;Administrators&quot;
+				<dev:code>Get-LocalGroup &quot;Administrators&quot;
 				</dev:code>
 				<dev:remarks>
-					<maml:para>This example shows a list of Users in the Administrators Group on the local computer.</maml:para>
+					<maml:para>GroupName: Administrators
+
+Administrator
+columbusi
+suva_C060220
+admtech
+admswins
+Domain Admins
+$GA-WSO-Admin
+$GA-TSO-VirusScanAdmin
+Lustenberger Joan (LUJ)
+_Columbus Installation Acc
+
+This example shows a list of Users in the Administrators Group on the local computer.</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -663,7 +694,7 @@ Created by:   	luj</maml:para>
 		<command:details>
 			<command:name>Get-LocalGroupMember</command:name>
 			<maml:description>
-				<maml:para>Get a list of groups where the member.</maml:para>
+				<maml:para>Show a list where the User is member of on the local Groups.</maml:para>
 			</maml:description>
 			<maml:copyright>
 				<maml:para/>
@@ -678,43 +709,46 @@ Created by:   	luj</maml:para>
 		<command:syntax>
 			<command:syntaxItem>
 				<maml:name>Get-LocalGroupMember</maml:name>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>The ComputerName where the command will be done, if no ComputerName is given the current computer will be taken instead.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue>localhost</dev:defaultValue>
 				</command:parameter>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>UserName</maml:name>
 					<maml:description>
 						<maml:para>A description of the GroupName parameter.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue/>
 				</command:parameter>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>GroupName</maml:name>
 					<maml:description>
-						<maml:para/>
+						<maml:para>This Parameter is deprecated and will be removed in a future Version. Use Get-LocalGroup instead.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue/>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
 		<command:parameters>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>The ComputerName where the command will be done, if no ComputerName is given the current computer will be taken instead.</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue/>
+				<dev:defaultValue>localhost</dev:defaultValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>UserName</maml:name>
 				<maml:description>
 					<maml:para>A description of the GroupName parameter.</maml:para>
@@ -726,12 +760,12 @@ Created by:   	luj</maml:para>
 				</dev:type>
 				<dev:defaultValue/>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>GroupName</maml:name>
 				<maml:description>
-					<maml:para/>
+					<maml:para>This Parameter is deprecated and will be removed in a future Version. Use Get-LocalGroup instead.</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
 					<maml:name>String</maml:name>
 					<maml:uri/>
@@ -761,23 +795,16 @@ Created by:   	luj</maml:para>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 0  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-LocalGroupMember &quot;Remote Desktop Users&quot; C12345678
+				<dev:code>Get-LocalGroupMember -UserName luj
 				</dev:code>
 				<dev:remarks>
-					<maml:para>This example shows a list of Users in the &quot;Remote Desktop Users&quot; Group on C12345678 computer.</maml:para>
-				</dev:remarks>
-			</command:example>
-			<command:example>
-				<maml:title>--------------------------  EXAMPLE 1  --------------------------</maml:title>
-				<maml:introduction>
-					<maml:para/>
-				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-LocalGroupMember &quot;Administrators&quot;
-				</dev:code>
-				<dev:remarks>
-					<maml:para>This example shows a list of Users in the Administrators Group on the local computer.</maml:para>
+					<maml:para>Administrators
+Performance Log Users
+Users
+
+					</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -786,7 +813,7 @@ Created by:   	luj</maml:para>
 		<command:details>
 			<command:name>Get-LocalGroups</command:name>
 			<maml:description>
-				<maml:para>Adds one or more members to an Computer group.</maml:para>
+				<maml:para>Get a list of all localgroups.</maml:para>
 			</maml:description>
 			<maml:copyright>
 				<maml:para/>
@@ -796,32 +823,33 @@ Created by:   	luj</maml:para>
 			<dev:version/>
 		</command:details>
 		<maml:description>
-			<maml:para>A detailed description of the Get-LocalGroupMember function.</maml:para>
+			<maml:para>It will list all localgroups of a computer.</maml:para>
 		</maml:description>
 		<command:syntax>
 			<command:syntaxItem>
 				<maml:name>Get-LocalGroups</maml:name>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
-						<maml:para>The description of a the ComputerName parameter.</maml:para>
+						<maml:para>Computer where to check the groups.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue>localhost</dev:defaultValue>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
 		<command:parameters>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
-					<maml:para>The description of a the ComputerName parameter.</maml:para>
+					<maml:para>Computer where to check the groups.</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue/>
+				<dev:defaultValue>localhost</dev:defaultValue>
 			</command:parameter>
 		</command:parameters>
 		<command:inputTypes>
@@ -846,23 +874,32 @@ Created by:   	luj</maml:para>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 0  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-LocalGroupMember &quot;Remote Desktop Users&quot; C12345678
-				</dev:code>
+				<dev:code>Get-LocalGroupMember</dev:code>
 				<dev:remarks>
-					<maml:para>This example shows a list of Users in the &quot;Remote Desktop Users&quot; Group on C12345678 computer.</maml:para>
-				</dev:remarks>
-			</command:example>
-			<command:example>
-				<maml:title>--------------------------  EXAMPLE 1  --------------------------</maml:title>
-				<maml:introduction>
-					<maml:para/>
-				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-LocalGroupMember &quot;Administrators&quot;
-				</dev:code>
-				<dev:remarks>
-					<maml:para>This example shows a list of Users in the Administrators Group on the local computer.</maml:para>
+					<maml:para>Access Control Assistance Operators
+Administrators
+Backup Operators
+Cryptographic Operators
+Distributed COM Users
+Event Log Readers
+Guests
+Hyper-V Administrators
+IIS_IUSRS
+Network Configuration Operators
+Performance Log Users
+Performance Monitor Users
+Power Users
+Remote Desktop Users
+Remote Management Users
+Replicator
+Users
+HelpLibraryUpdaters
+NetOpActivity
+WinRMRemoteWMIUsers__
+
+This example shows a list of all Groups on the local computer.</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -871,7 +908,7 @@ Created by:   	luj</maml:para>
 		<command:details>
 			<command:name>Get-LoggedOnUser</command:name>
 			<maml:description>
-				<maml:para/>
+				<maml:para>Get the name of the User Loged on a Computer.</maml:para>
 			</maml:description>
 			<maml:copyright>
 				<maml:para/>
@@ -881,7 +918,7 @@ Created by:   	luj</maml:para>
 			<dev:version/>
 		</command:details>
 		<maml:description>
-			<maml:para/>
+			<maml:para>Administrator Rights on the given Computer are requiered.</maml:para>
 		</maml:description>
 		<command:syntax>
 			<command:syntaxItem>
@@ -911,13 +948,19 @@ Created by:   	luj</maml:para>
 		</command:parameters>
 		<command:examples>
 			<command:example>
-				<maml:title>--------------------------  EXAMPLE 1 --------------------------</maml:title>
+				<maml:title>--------------------------  EXAMPLE 0 --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Get-LoggedOnUser -ComputerName $value1</dev:code>
+				<dev:code>Get-LoggedOnUser c508001</dev:code>
 				<dev:remarks>
-					<maml:para>Write example description here.</maml:para>
+					<maml:para>Computer                                                    LoggedOn
+--------                                                    --------
+c508001                                                     admluj
+c508001                                                     DWM-1
+c508001                                                     DWM-2
+
+					</maml:para>
 				</dev:remarks>
 			</command:example>
 		</command:examples>
@@ -936,7 +979,7 @@ Created by:   	luj</maml:para>
 			<dev:version/>
 		</command:details>
 		<maml:description>
-			<maml:para>A detailed description of the Remove-LocalGroupMember function.</maml:para>
+			<maml:para>Remove a member from a defined Computer</maml:para>
 		</maml:description>
 		<command:syntax>
 			<command:syntaxItem>
@@ -948,19 +991,21 @@ Created by:   	luj</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
 				</command:parameter>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 					<maml:name>GroupName</maml:name>
 					<maml:description>
 						<maml:para>Group name of the group where the user need to be removed. If no GroupName is given &quot;Remote Desktop Users&quot; will be taken.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+					<dev:defaultValue>Remote Desktop Users</dev:defaultValue>
 				</command:parameter>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>Computer Name where it will be applied. If no ComputerName is given, local Computer will take instead.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue>localhost</dev:defaultValue>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
@@ -977,29 +1022,29 @@ Created by:   	luj</maml:para>
 				</dev:type>
 				<dev:defaultValue/>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="">
 				<maml:name>GroupName</maml:name>
 				<maml:description>
 					<maml:para>Group name of the group where the user need to be removed. If no GroupName is given &quot;Remote Desktop Users&quot; will be taken.</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">string</command:parameterValue>
 				<dev:type>
 					<maml:name>string</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue/>
+				<dev:defaultValue>Remote Desktop Users</dev:defaultValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>Computer Name where it will be applied. If no ComputerName is given, local Computer will take instead.</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue/>
+				<dev:defaultValue>localhost</dev:defaultValue>
 			</command:parameter>
 		</command:parameters>
 		<command:inputTypes>
@@ -1024,24 +1069,26 @@ Created by:   	luj</maml:para>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 0  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Remove-LocalGroupMember -UserName &#39;luj&#39; -ComputerName C12345678
+				<dev:code>Remove-LocalGroupMember -UserName &apos;luj&apos; -ComputerName C12345678
 				</dev:code>
 				<dev:remarks>
 					<maml:para>&quot;luj deleted in Remote Desktop Users at C12345678.&quot;
+
 This example shows how to call the Remove-LocalGroupMember function with named parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 1  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Remove-LocalGroupMember joan &quot;Administrators&quot;
+				<dev:code>Remove-LocalGroupMember joan &quot;Administrators&quot;
 				</dev:code>
 				<dev:remarks>
 					<maml:para>&apos;joan added in Administrators at $env:COMPUTERNAME&apos;
+
 This example shows how to call the Remove-LocalGroupMember function with positional parameters.</maml:para>
 				</dev:remarks>
 			</command:example>
@@ -1072,8 +1119,7 @@ This example shows how to call the Remove-LocalGroupMember function with positio
 						<maml:para>Image to set as Background</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>ComputerName</maml:name>
@@ -1089,8 +1135,7 @@ This example shows how to call the Remove-LocalGroupMember function with positio
 						<maml:para>Username from witch the background will be set.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-					<dev:defaultValue>
-					</dev:defaultValue>
+					<dev:defaultValue/>
 				</command:parameter>
 				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>DestinationFolder</maml:name>
@@ -1113,8 +1158,7 @@ This example shows how to call the Remove-LocalGroupMember function with positio
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>ComputerName</maml:name>
@@ -1138,8 +1182,7 @@ This example shows how to call the Remove-LocalGroupMember function with positio
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>DestinationFolder</maml:name>
@@ -1200,12 +1243,13 @@ This example shows how to call the Remove-LocalGroupMember function with positio
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 				</command:parameter>
-				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
 					<maml:name>ComputerName</maml:name>
 					<maml:description>
 						<maml:para>A description of the ComputerName parameter.</maml:para>
 					</maml:description>
 					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+					<dev:defaultValue>localhost</dev:defaultValue>
 				</command:parameter>
 			</command:syntaxItem>
 		</command:syntax>
@@ -1222,17 +1266,17 @@ This example shows how to call the Remove-LocalGroupMember function with positio
 				</dev:type>
 				<dev:defaultValue/>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>ComputerName</maml:name>
 				<maml:description>
 					<maml:para>A description of the ComputerName parameter.</maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
 				<dev:type>
 					<maml:name>String</maml:name>
 					<maml:uri/>
 				</dev:type>
-				<dev:defaultValue/>
+				<dev:defaultValue>localhost</dev:defaultValue>
 			</command:parameter>
 		</command:parameters>
 		<maml:alertSet>
@@ -1245,9 +1289,9 @@ This example shows how to call the Remove-LocalGroupMember function with positio
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 0  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; Set-BackgroundLogon -SourceImage c:\temp\legolotr1.jpg -ComputerName C020794 -Verbose</dev:code>
+				<dev:code>Set-BackgroundLogon -SourceImage c:\temp\legolotr1.jpg -ComputerName C020794 -Verbose</dev:code>
 				<dev:remarks>
 					<maml:para>
 					</maml:para>
@@ -1347,9 +1391,9 @@ the Logon Background for Windows 7.</maml:para>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 0  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt;  Set-ImageFilter -Image c:\temp\image.jpg -Output &quot;C:\temp\imageSmall.jpg&quot;</dev:code>
+				<dev:code>Set-ImageFilter -Image c:\temp\image.jpg -Output &quot;C:\temp\imageSmall.jpg&quot;</dev:code>
 				<dev:remarks>
 					<maml:para>
 					</maml:para>
@@ -1358,9 +1402,9 @@ the Logon Background for Windows 7.</maml:para>
 			<command:example>
 				<maml:title>--------------------------  EXAMPLE 1  --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para/>
+					<maml:para>PS C:\&gt; </maml:para>
 				</maml:introduction>
-				<dev:code>PS C:\&gt; foreach ($image in (Get-ChildItem $source)) { Set-ImageFilter -Image $image.FullName -Output &quot;$destination\$($image.Name)&quot;}</dev:code>
+				<dev:code>foreach ($image in (Get-ChildItem $source)) { Set-ImageFilter -Image $image.FullName -Output &quot;$destination\$($image.Name)&quot;}</dev:code>
 				<dev:remarks>
 					<maml:para>
 					</maml:para>
