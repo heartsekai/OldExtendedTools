@@ -239,6 +239,64 @@ function Get-ComputerUptime {
 	
 }
 
+
+#  .EXTERNALHELP ExtendedTools.psm1-Help.xml
+function Get-EventLogsToCmTrace {
+    param(
+		[String]$Computer = $env:COMPUTERNAME,
+		[String]$LogFile = "Output.log"
+	)
+	
+	#Obtain UTC offset 
+    $DateTime = New-Object -ComObject WbemScripting.SWbemDateTime  
+    $DateTime.SetVarDate($(Get-Date)) 
+    $UtcValue = $DateTime.Value 
+    $UtcOffset = $UtcValue.Substring(21, $UtcValue.Length - 21)
+
+    $regex = "(^Logon \(\D*\) )(?<Time>Time:.*)(?<Node>Node Name:.*)(?<Action>Action:.*)(?<Start>Start Time:.*)(?<Duration>Duration: .*)"
+
+	# if computer is offline we don't need to continue
+	Write-Verbose "Trying to Ping $ComputerName"
+	Test-Connection -ComputerName $ComputerName -Count 1 -Quiet -ErrorAction 'Stop'
+
+	try {
+		#Get the Events
+		$EventList = Get-EventLog -LogName AppSense -ComputerName $Computer
+
+		foreach ($item in $EventList){
+			# We put the message in a readable way
+			if ($item.Message -match $regex) {
+				$message = "$($matches.1)`n$($matches.Time)`n$($matches.Node)`n$($matches.Action)`n$($matches.Start)`n$($matches.Duration)"
+			}
+			else {
+				$message = $item.Message
+			}
+		
+			# EventLog give the Error type in text, CmTrace accepts only numbers
+			switch ($item.EntryType) {
+				"Warning" { $type = 2 }
+				"Error" { $type = 3 }
+				default { $type = 1 }
+			}
+
+			 $logline = `
+			"<![LOG[$message]LOG]!>" +`
+			"<time=`"$(Get-Date $item.TimeGenerated -Format HH:mm:ss.fff)$($UtcOffset)`" " +`
+			"date=`"$(Get-Date $item.TimeGenerated -Format M-d-yyyy)`" " +`
+			"component=`"$($item.Source)`" " +`
+			"context=`"$([System.Security.Principal.WindowsIdentity]::GetCurrent().Name)`" " +`
+			"type=`"$type`" " +`
+			"thread=`"$($item.EventID)`" " +`
+			"file=`"$($item.MachineName)`">";
+			$logline | Out-File -Append -Encoding utf8 -FilePath $Logfile;
+		}
+	}
+	catch{
+		Write-Error "Something went terribly wrong.`n$($_.Exception.Message)"
+	}
+
+}
+
 #  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-InstalledSoftware {
 	try {
@@ -1037,6 +1095,7 @@ function Write-CMTraceLog{
         }#Information
     }#Switch
 }#Function v1.3 - 23-12-2015
+
 
 
 Export-ModuleMember Remove-LocalProfile,
