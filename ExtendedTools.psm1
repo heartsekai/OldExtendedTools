@@ -244,7 +244,7 @@ function Get-ComputerUptime {
 function Get-EventLogsToCmTrace {
     param(
 		[String]$ComputerName = $env:COMPUTERNAME,
-		[String]$LogFile = "Output.log"
+		[String]$LogFile = $ComputerName + "Output.log"
 	)
 	
 	#Obtain UTC offset 
@@ -253,7 +253,7 @@ function Get-EventLogsToCmTrace {
     $UtcValue = $DateTime.Value 
     $UtcOffset = $UtcValue.Substring(21, $UtcValue.Length - 21)
 
-    $regex = "(^Logon \(\D*\) )(?<Time>Time:.*)(?<Node>Node Name:.*)(?<Action>Action:.*)(?<Start>Start Time:.*)(?<Duration>Duration: .*)"
+    $regex = "(^Logon \(\D*\) )(?<Time>Time:.*)(?<Node>Node Name:.*)(?<Action>Action:.*)(?<Start>Start Time:.*)(?<Duration>Duration: .*)ms(?( ) (?<Error>Error Code:.*)*|\.)"
 
 	# if computer is offline we don't need to continue
 	Write-Verbose "Trying to Ping $ComputerName"
@@ -264,20 +264,27 @@ function Get-EventLogsToCmTrace {
 		$EventList = Get-EventLog -LogName AppSense -ComputerName $ComputerName
 
 		foreach ($item in $EventList){
-			# We put the message in a readable way
-			if ($item.Message -match $regex) {
-				$message = "$($matches.1)`n$($matches.Time)`n$($matches.Node)`n$($matches.Action)`n$($matches.Start)`n$($matches.Duration)"
-			}
-			else {
-				$message = $item.Message
-			}
-		
 			# EventLog give the Error type in text, CmTrace accepts only numbers
+			# we do first this check, coz later it can be changed depending the message. (Appsense mark Errors as Info)
 			switch ($item.EntryType) {
 				"Warning" { $type = 2 }
 				"Error" { $type = 3 }
 				default { $type = 1 }
 			}
+
+			# We put the message in a readable way
+			if ($item.Message -match $regex) {
+				$message = "$($matches.1)`n$($matches.Time)`n$($matches.Node)`n$($matches.Action)`n$($matches.Start)`n$($matches.Duration)"
+				if (![String]::IsNullOrEmpty($matches.Error)) {
+				    $message += "`n$($matches.Error)"
+				    #we set an Error
+				    $type = 3
+				}
+			}
+			else {
+				$message = $item.Message
+			}
+		
 
 			 $logline = `
 			"<![LOG[$message]LOG]!>" +`
