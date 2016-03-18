@@ -1421,8 +1421,7 @@ the Logon Background for Windows 7.</maml:para>
 				<maml:para>Write to a log file in a format that takes advantage of the CMTrace.exe log viewer that comes with SCCM.</maml:para>
 			</maml:description>
 			<maml:copyright>
-				<maml:para>
-				</maml:para>
+				<maml:para/>
 			</maml:copyright>
 			<command:verb>Write</command:verb>
 			<command:noun>CMTraceLog</command:noun>
@@ -1464,8 +1463,7 @@ CM Trace - https://www.microsoft.com/en-us/download/details.aspx?id=50012 or the
 					<maml:para>Message to be recorded</maml:para>
 				</maml:description>
 				<command:parameterValue required="true">string</command:parameterValue>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="true" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>Type</maml:name>
@@ -1473,8 +1471,7 @@ CM Trace - https://www.microsoft.com/en-us/download/details.aspx?id=50012 or the
 					<maml:para>One of the defined severity&apos;Warning&apos;,&apos;Error&apos;,&apos;Verbose&apos;,&apos;Debug&apos;, &apos;Information&apos;</maml:para>
 				</maml:description>
 				<command:parameterValue required="true">string</command:parameterValue>
-				<dev:defaultValue>
-				</dev:defaultValue>
+				<dev:defaultValue/>
 			</command:parameter>
 			<command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="">
 				<maml:name>WriteBackToHost</maml:name>
@@ -1549,8 +1546,7 @@ Write-CMTraceLog -Message &quot;This is a verbose message.&quot; -Type Verbose</
 			<command:example>
 				<maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
 				<maml:introduction>
-					<maml:para>
-					</maml:para>
+					<maml:para/>
 				</maml:introduction>
 				<dev:code>Function Test{
     [cmdletbinding()]
@@ -1575,6 +1571,50 @@ The write-cmtracelog function will then print the verbose message.</maml:para>
 				<maml:uri>https://www.microsoft.com/en-us/download/details.aspx?id=50012</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
+	</command:command>
+	<!-- Edited with: SAPIEN PowerShell HelpWriter 2015 v1.0.16-->
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<!-- Command-->
+		<command:details>
+			<command:name>Get-EventLogToCmTrace</command:name>
+			<maml:description>
+				<maml:para>
+				</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para>
+				</maml:para>
+			</maml:copyright>
+			<command:verb>Get</command:verb>
+			<command:noun>EventLogToCmTrace</command:noun>
+			<dev:version/>
+		</command:details>
+		<maml:description>
+			<maml:para>
+			</maml:para>
+		</maml:description>
+		<command:syntax>
+			<!-- Parameter Sets-->
+		</command:syntax>
+		<command:parameters>
+			<!-- All Parameters-->
+			<command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>ComputerName</maml:name>
+				<maml:description>
+					<maml:para>The ComputerName where the command will be done, if no ComputerName is given the current computer will be taken instead.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false">string</command:parameterValue>
+				<dev:defaultValue>$env:ComputerName</dev:defaultValue>
+			</command:parameter>
+			<command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>Logfile</maml:name>
+				<maml:description>
+					<maml:para>File where to save the logs.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false">string</command:parameterValue>
+				<dev:defaultValue>Output.log</dev:defaultValue>
+			</command:parameter>
+		</command:parameters>
 	</command:command>
 	<!-- Edited with: SAPIEN PowerShell HelpWriter 2015 v1.0.16-->
 </helpItems>

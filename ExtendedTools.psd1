@@ -18,7 +18,7 @@
 ModuleToProcess = 'ExtendedTools.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.6'
+ModuleVersion = '1.1.0'
 
 # ID used to uniquely identify this module
 GUID = 'bf660048-a706-4139-a987-16b94ec8a88f'
