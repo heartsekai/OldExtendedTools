@@ -243,7 +243,7 @@ function Get-ComputerUptime {
 #  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-EventLogsToCmTrace {
     param(
-		[String]$Computer = $env:COMPUTERNAME,
+		[String]$ComputerName = $env:COMPUTERNAME,
 		[String]$LogFile = "Output.log"
 	)
 	
@@ -261,7 +261,7 @@ function Get-EventLogsToCmTrace {
 
 	try {
 		#Get the Events
-		$EventList = Get-EventLog -LogName AppSense -ComputerName $Computer
+		$EventList = Get-EventLog -LogName AppSense -ComputerName $ComputerName
 
 		foreach ($item in $EventList){
 			# We put the message in a readable way
