@@ -447,6 +447,88 @@ Created by:   	luj</maml:para>
 	</command:command>
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<command:details>
+			<command:name>Convert-XamlToPowershell</command:name>
+			<maml:description>
+				<maml:para/>
+			</maml:description>
+			<maml:copyright>
+				<maml:para/>
+			</maml:copyright>
+			<command:verb>Convert</command:verb>
+			<command:noun>XamlToPowershell</command:noun>
+			<dev:version/>
+		</command:details>
+		<maml:description>
+			<maml:para>Convert an Xaml file created with VS to a Poweshell script with GUI.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<command:syntaxItem>
+				<maml:name>Convert-XamlToPowershell</maml:name>
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
+					<maml:name>Path</maml:name>
+					<maml:description>
+						<maml:para/>
+					</maml:description>
+					<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+				</command:parameter>
+				<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="">
+					<maml:name>DestinationPath</maml:name>
+					<maml:description>
+						<maml:para/>
+					</maml:description>
+					<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>Path</maml:name>
+				<maml:description>
+					<maml:para/>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri/>
+				</dev:type>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="">
+				<maml:name>DestinationPath</maml:name>
+				<maml:description>
+					<maml:para/>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+				<dev:type>
+					<maml:name>String</maml:name>
+					<maml:uri/>
+				</dev:type>
+			</command:parameter>
+		</command:parameters>
+		<maml:alertSet>
+			<maml:title/>
+			<maml:alert>
+				<maml:para>===========================================================================
+	Created on:   	21.03.2016 22:28
+	Created by:		Joan Lustenberger
+	Organization:	Suva
+	===========================================================================</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<command:examples>
+			<command:example>
+				<maml:title>--------------------------  EXAMPLE 1 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:para>PS C:\&gt; </maml:para>
+				</maml:introduction>
+				<dev:code>Convert-XamlToPowershell -Path &apos;Value1&apos;</dev:code>
+				<dev:remarks>
+					<maml:para>Creates a File with the same name with ps1 as extension.</maml:para>
+				</dev:remarks>
+			</command:example>
+		</command:examples>
+	</command:command>
+	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+		<command:details>
 			<command:name>Get-ComputerUptime</command:name>
 			<maml:description>
 				<maml:para/>

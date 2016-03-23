@@ -1218,6 +1218,7 @@ function Write-CMTraceLog{
 Export-ModuleMember Remove-LocalProfile,
 					Add-LocalGroupMember,
 					Add-LocalUser,
+					Convert-XamlToPowershell,
 					Get-ComputerUptime,
 					Get-EventLogsToCmTrace,
 					Get-InstalledSoftware,
