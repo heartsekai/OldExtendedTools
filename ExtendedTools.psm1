@@ -378,7 +378,7 @@ function Get-EventLogsToCmTrace {
 		#Get the Events
 		Write-Verbose "Exporting Events from $ComputerName"
 		$stadistics = Measure-Command {$EventList = Get-EventLog -LogName AppSense -ComputerName $ComputerName}
-		Write-Verbose "$($EventList.Count) Events Exported in $($stadistics.TotalSeconds)"
+		Write-Verbose "$($EventList.Count) Events Exported in $($stadistics.TotalSeconds) Seconds."
 		
 		#for progressbar
 		$i = 0
