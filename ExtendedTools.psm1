@@ -352,9 +352,10 @@ function Get-ComputerUptime {
 
 #  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Get-EventLogsToCmTrace {
+	[CmdletBinding()]
     param(
 		[String]$ComputerName = $env:COMPUTERNAME,
-		[String]$LogFile = $ComputerName + "Output.log"
+		[String]$LogFile = $ComputerName + "_Output.log"
 	)
 	
 	#Obtain UTC offset 
@@ -366,14 +367,25 @@ function Get-EventLogsToCmTrace {
     $regex = "(^Logon \(\D*\) )(?<Time>Time:.*)(?<Node>Node Name:.*)(?<Action>Action:.*)(?<Start>Start Time:.*)(?<Duration>Duration: .*)ms(?( ) (?<Error>Error Code:.*)*|\.)"
 
 	# if computer is offline we don't need to continue
-	Write-Verbose "Trying to Ping $ComputerName"
-	Test-Connection -ComputerName $ComputerName -Count 1 -Quiet -ErrorAction 'Stop'
+	Write-Verbose "Pinging $ComputerName"
+	if (!(Test-Connection -ComputerName $ComputerName -Count 1 -Quiet -ErrorAction 'Stop')){
+		Write-Host "$ComputerName is Offline."
+		exit
+	}
+	Write-Verbose "$ComputerName is Online."
 
 	try {
 		#Get the Events
-		$EventList = Get-EventLog -LogName AppSense -ComputerName $ComputerName
+		Write-Verbose "Exporting Events from $ComputerName"
+		$stadistics = Measure-Command {$EventList = Get-EventLog -LogName AppSense -ComputerName $ComputerName}
+		Write-Verbose "$($EventList.Count) Events Exported in $($stadistics.TotalSeconds)"
+		
+		#for progressbar
+		$i = 0
 
 		foreach ($item in $EventList){
+			Write-Progress -Activity "Converting to CmTrace" -status "Converting Event $($i+1) from $($EventList.Count)" -percentComplete ($i/$EventList.Count*100)
+			$i++
 			# EventLog give the Error type in text, CmTrace accepts only numbers
 			# we do first this check, coz later it can be changed depending the message. (Appsense mark Errors as Info)
 			switch ($item.EntryType) {
@@ -411,7 +423,7 @@ function Get-EventLogsToCmTrace {
 	catch{
 		Write-Error "Something went terribly wrong.`n$($_.Exception.Message)"
 	}
-
+	Write-Verbose "Done. Logfile = $Logfile"
 }
 
 #  .EXTERNALHELP ExtendedTools.psm1-Help.xml
