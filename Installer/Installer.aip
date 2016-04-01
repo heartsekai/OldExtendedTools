@@ -7,10 +7,10 @@
     <ROW Property="ARPCONTACT" Value="Joan Lustenberger (LUJ)"/>
     <ROW Property="ARPPRODUCTICON" Value="ExtendedTools128x128.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="Suva"/>
-    <ROW Property="ProductCode" Value="1033:{5A45913E-8246-4111-AEEF-B27C050AA04A} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{5941C306-F3A9-41F2-905F-894B23865A2F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Powershell ExtendedTools"/>
-    <ROW Property="ProductVersion" Value="1.4.2" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.5.4" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{DB9B9B9A-A533-4928-9C47-EE5ACD8AC22B}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

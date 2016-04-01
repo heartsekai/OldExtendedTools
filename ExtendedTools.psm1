@@ -663,6 +663,80 @@ function Get-LoggedOnUser {
 	
 }
 
+<#
+	.SYNOPSIS
+		Search for a Project in the defined $ProjectDefault.
+	
+	.DESCRIPTION
+		A detailed description of the push-project function.
+	
+	.PARAMETER ProjectName
+		Name of the Project.
+	
+	.PARAMETER Path
+		Path where the Projects are.
+	
+	.EXAMPLE
+		PS C:\> push-project -project $value1
+	
+	.NOTES
+		Additional information about the function.
+#>
+function Push-Project
+{
+	param
+	(
+		[Parameter(Mandatory = $true, Position = 1)]
+		[String]$ProjectName,
+		[Parameter(Position = 2)]
+		[String]$Path = $PushProjectPath
+	)
+	
+	$ProjectPath = "$Path\$ProjectName"
+	
+	# if we dont find the Folder directly we check for similarities
+	if (-not (Test-Path $ProjectPath))
+	{
+		$ProjectPathList = ls $Path -Filter "*$ProjectName*" -Directory
+		
+		if ($ProjectPathList.Length -gt 1)
+		{
+			# build a menulist with the options
+			$i = 1
+			foreach ($item in $ProjectPathList)
+			{
+				Write-Host "$i - $item"
+				$i++
+			}
+			Write-Host "0 - Exit"
+			
+			$check = 0
+			do
+			{
+				$option = Read-Host "Select one Project> "
+				if (![Int32]::TryParse($option, [ref]$check))
+				{
+					Write-Host "Only integer please."
+					# reset $option
+					$option = -1
+				}
+			}
+			while (([int]$option -lt 0) -or ([int]$option -gt $ProjectPathList.Length + 1))
+			
+			switch ($option)
+			{
+				0 { exit }
+				default
+				{
+					$ProjectPath = ls $Path -Filter "*$ProjectName*" -Directory | Select-Object -Index $($option - 1)
+				}
+			}
+		}
+	}
+	pushd $ProjectPath.FullName
+}
+
+
 #  .EXTERNALHELP ExtendedTools.psm1-Help.xml
 function Remove-LocalGroupMember {
 	[CmdletBinding()]
@@ -1238,6 +1312,7 @@ Export-ModuleMember Remove-LocalProfile,
 					Get-LocalGroupMember,
 					Get-LocalGroups,
 					Get-LoggedOnUser,
+					Push-Project,
 					Remove-LocalGroupMember,
 					Set-BackgroundDesktop,
 					Set-BackgroundLogon,
