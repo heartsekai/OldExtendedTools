@@ -684,56 +684,60 @@ function Get-LoggedOnUser {
 #>
 function Push-Project
 {
+    [CmdletBinding()]
 	param
 	(
 		[Parameter(Mandatory = $true, Position = 1)]
 		[String]$ProjectName,
-		[Parameter(Position = 2)]
+		[Parameter(ValueFromRemainingArguments=$true)]
 		[String]$Path = $PushProjectPath
 	)
 	
-	$ProjectPath = "$Path\$ProjectName"
-	
-	# if we dont find the Folder directly we check for similarities
-	if (-not (Test-Path $ProjectPath))
-	{
-		$ProjectPathList = ls $Path -Filter "*$ProjectName*" -Directory
-		
-		if ($ProjectPathList.Length -gt 1)
-		{
-			# build a menulist with the options
-			$i = 1
-			foreach ($item in $ProjectPathList)
-			{
-				Write-Host "$i - $item"
-				$i++
-			}
-			Write-Host "0 - Exit"
-			
-			$check = 0
-			do
-			{
-				$option = Read-Host "Select one Project> "
-				if (![Int32]::TryParse($option, [ref]$check))
-				{
-					Write-Host "Only integer please."
-					# reset $option
-					$option = -1
-				}
-			}
-			while (([int]$option -lt 0) -or ([int]$option -gt $ProjectPathList.Length + 1))
-			
-			switch ($option)
-			{
-				0 { exit }
-				default
-				{
-					$ProjectPath = ls $Path -Filter "*$ProjectName*" -Directory | Select-Object -Index $($option - 1)
-				}
-			}
-		}
-	}
-	pushd $ProjectPath.FullName
+    Write-Verbose "Finding all the matches."
+    $ProjectPathList = ls $Path -Filter "*$ProjectName*" -Directory
+    Write-Verbose "Got $($ProjectPath.Length) matches."
+
+    if ($ProjectPathList.Length -gt 1)
+    {
+        # build a menulist with the options
+        $i = 1
+        foreach ($item in $ProjectPathList)
+        {
+            Write-Host "$i - $($item.Parent.Name) / $($item.Name)"
+            $i++
+        }
+        Write-Host "0 - Exit"
+        
+        $check = 0
+        do
+        {
+            $option = Read-Host "Select one Project> "
+            if (![Int32]::TryParse($option, [ref]$check))
+            {
+                Write-Host "Only integer please."
+                # reset $option
+                $option = -1
+            }
+        }
+        while (([int]$option -lt 0) -or ([int]$option -gt $ProjectPathList.Length + 1))
+        
+        switch ($option)
+        {
+            0 { exit }
+            default
+            {
+                $ProjectPath = $ProjectPathList[$option -1]
+            }
+        }
+    }
+
+    if ($ProjectPath) {
+        Write-Verbose "Pushd to $($ProjectPath.FullName)"
+       Pushd $ProjectPath.FullName 
+    }
+    else {
+        "No matches found." | Out-String 
+    }
 }
 
 
