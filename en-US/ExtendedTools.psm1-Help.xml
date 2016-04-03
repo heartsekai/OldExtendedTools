@@ -1658,7 +1658,7 @@ The write-cmtracelog function will then print the verbose message.</maml:para>
 	<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
 		<!-- Command-->
 		<command:details>
-			<command:name>Get-EventLogToCmTrace</command:name>
+			<command:name>Get-AppSenseLogsToCmTrace</command:name>
 			<maml:description>
 				<maml:para>
 				</maml:para>
@@ -1668,7 +1668,7 @@ The write-cmtracelog function will then print the verbose message.</maml:para>
 				</maml:para>
 			</maml:copyright>
 			<command:verb>Get</command:verb>
-			<command:noun>EventLogToCmTrace</command:noun>
+			<command:noun>AppSenseLogsToCmTrace</command:noun>
 			<dev:version/>
 		</command:details>
 		<maml:description>
@@ -1694,7 +1694,7 @@ The write-cmtracelog function will then print the verbose message.</maml:para>
 					<maml:para>File where to save the logs.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false">string</command:parameterValue>
-				<dev:defaultValue>Output.log</dev:defaultValue>
+				<dev:defaultValue>$computerName_Output.log</dev:defaultValue>
 			</command:parameter>
 		</command:parameters>
 	</command:command>
