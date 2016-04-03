@@ -674,11 +674,18 @@ function Get-LoggedOnUser {
 		Name of the Project.
 	
 	.PARAMETER Path
-		Path where the Projects are.
+		Paths where the Projects are.
 	
 	.EXAMPLE
-		PS C:\> push-project -project $value1
-	
+		PS C:\> Push-Project win C:\PortableApps C:\Temp\Library1 C:\Temp\Library2
+        1 - PortableApps / WinDirStatPortable
+        2 - PortableApps / WinMergePortable
+        3 - Library1 / WinDirStatPortable
+        4 - Library1 / WinMergePortable
+        0 - Exit
+        Select one Project> : 3
+
+        PS C:\Temp\Library1\WinDirStatPortable>
 	.NOTES
 		Additional information about the function.
 #>
@@ -690,7 +697,7 @@ function Push-Project
 		[Parameter(Mandatory = $true, Position = 1)]
 		[String]$ProjectName,
 		[Parameter(ValueFromRemainingArguments=$true)]
-		[String]$Path = $PushProjectPath
+		[String[]]$Path = $PushProjectPath
 	)
 	
     Write-Verbose "Finding all the matches."
