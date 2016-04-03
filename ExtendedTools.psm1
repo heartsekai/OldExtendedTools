@@ -351,7 +351,7 @@ function Get-ComputerUptime {
 
 
 #  .EXTERNALHELP ExtendedTools.psm1-Help.xml
-function Get-EventLogsToCmTrace {
+function Get-AppSenseLogsToCmTrace {
 	[CmdletBinding()]
     param(
 		[String]$ComputerName = $env:COMPUTERNAME,
@@ -1306,7 +1306,7 @@ Export-ModuleMember Remove-LocalProfile,
 					Add-LocalUser,
 					Convert-XamlToPowershell,
 					Get-ComputerUptime,
-					Get-EventLogsToCmTrace,
+					Get-AppSenseLogsToCmTrace,
 					Get-InstalledSoftware,
 					Get-LocalGroup,
 					Get-LocalGroupMember,
