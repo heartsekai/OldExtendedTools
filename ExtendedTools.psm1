@@ -730,7 +730,7 @@ function Push-Project
         
         switch ($option)
         {
-            0 { exit }
+            0 { return }
             default
             {
                 $ProjectPath = $ProjectPathList[$option -1]
