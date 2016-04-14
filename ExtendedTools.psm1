@@ -364,7 +364,7 @@ function Get-AppSenseLogsToCmTrace {
     $UtcValue = $DateTime.Value 
     $UtcOffset = $UtcValue.Substring(21, $UtcValue.Length - 21)
 
-    $regex = "(^Logon \(\D*\) )(?<Time>Time:.*)(?<Node>Node Name:.*)(?<Action>Action:.*)(?<Start>Start Time:.*)(?<Duration>Duration: .*)ms(?( ) (?<Error>Error Code:.*)*|\.)"
+    $regex = "(?<Start>^Logon \(\D*\) )(?<Time>Time:.*)(?<Node>Node Name:.*)(?<Action>Action:.*)(?<Start>Start Time:.*)(?<Duration>Duration: .*)ms(?( ) (?<Error>Error Code:.*)*|\.)"
 
 	# if computer is offline we don't need to continue
 	Write-Verbose "Pinging $ComputerName"
@@ -396,7 +396,7 @@ function Get-AppSenseLogsToCmTrace {
 
 			# We put the message in a readable way
 			if ($item.Message -match $regex) {
-				$message = "$($matches.1)`n$($matches.Time)`n$($matches.Node)`n$($matches.Action)`n$($matches.Start)`n$($matches.Duration)"
+				$message = "$($matches.Start)`n$($matches.Time)`n$($matches.Node)`n$($matches.Action)`n$($matches.Start)`n$($matches.Duration)"
 				if (![String]::IsNullOrEmpty($matches.Error)) {
 				    $message += "`n$($matches.Error)"
 				    #we set an Error
