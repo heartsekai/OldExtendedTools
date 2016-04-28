@@ -370,7 +370,7 @@ function Get-AppSenseLogsToCmTrace {
 	Write-Verbose "Pinging $ComputerName"
 	if (!(Test-Connection -ComputerName $ComputerName -Count 1 -Quiet -ErrorAction 'Stop')){
 		Write-Host "$ComputerName is Offline."
-		exit
+		return
 	}
 	Write-Verbose "$ComputerName is Online."
 
