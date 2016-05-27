@@ -285,18 +285,6 @@ function Convert-XamlToPowershell {
 
 "@
 
-    $Document += @"
-
-    #===========================================================================
-    # Add Events
-    #===========================================================================
-
-"@
-
-    foreach ($element in $ClickEvents.GetEnumerator()){
-        $Document += "`$$($element.Key).Add_Click(`$$($element.Value))`n"
-    }
-    $Document += "`n#endregion"
 
     $Document += @"
 
@@ -321,6 +309,18 @@ function Convert-XamlToPowershell {
 
 "@
 
+    $Document += @"
+
+    #===========================================================================
+    # Add Events
+    #===========================================================================
+
+"@
+
+    foreach ($element in $ClickEvents.GetEnumerator()){
+        $Document += "`$$($element.Key).Add_Click(`$$($element.Value))`n"
+    }
+    $Document += "`n#endregion"
 
     #Adding Ending
     $Document += @"
@@ -329,7 +329,7 @@ function Convert-XamlToPowershell {
     #===========================================================================
     # Shows the Window
     #===========================================================================
-    `Window.ShowDialog() | out-null
+    `$Window.ShowDialog() | out-null
     #endregion
 "@
 
